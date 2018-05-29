@@ -7,7 +7,7 @@ const URL={
 
 export default {
     // 获取所有的blog
-   getBlogs({page=1,userId,atIndex}){
+   getBlogs({page=1,userId,atIndex}={page:1}){
         return request(URL.BLOG)
     },
     // 获取首页的blog
@@ -22,7 +22,7 @@ export default {
     getDetail({blogId}){
         return request(URL.BLOGID.replace(':blogId','blogId'))
     },
-    updateBlog({blogId}){
+    updateBlog({blogId},{title,content,description,atIndex}){
         return request(URL.BLOGID.replace(':blogId',"blogId"),'PATCH',{title,content,description,atIndex})
     },
     delBlog({blogId}){
