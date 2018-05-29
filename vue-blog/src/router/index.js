@@ -6,6 +6,7 @@ import Index from '@/page/Index/template.vue'
 import Edit from '@/page/Edit/template.vue'
 import Detail from '@/page/Detail/template.vue'
 import Create from '@/page/Create/template.vue'
+import User from '@/page/User/template.vue'
 
 Vue.use(Router)
 
@@ -13,8 +14,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: Login
+      name: 'Index',
+      component: Index
     },
     {
       path: '/login',
@@ -23,27 +24,27 @@ export default new Router({
     },
     {
       path: '/register',
-      name: 'test',
+      name: 'Register',
       component: Register
     },
     {
-      path: '/index',
-      name: 'test',
-      component: Index
-    },
-    {
       path: '/edit',
-      name: 'test',
+      name: 'Edit',
       component: Edit
     },
     {
       path: '/detail',
-      name: 'test',
+      name: 'Detail',
       component: Detail
     },
     {
+      path: '/user',
+      name: 'User',
+      component: User
+    },
+    {
       path: '/create',
-      name: 'test',
+      name: 'Create',
       component: Create
     }
   ]
