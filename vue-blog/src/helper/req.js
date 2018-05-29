@@ -8,25 +8,26 @@ axios.defaults.baseURL = 'http://blog-server.hunger-valley.com';
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
-export default function request(url,type='GET',data={}){
+export default function request(url,type='get',data={}){
     return new Promise((resolve,reject)=>{
 
     // 根据axios的get/post请求API进行封装
-        let options={
+        const option={
             url,
             method:type
         }
-        if(type.toLocaleLowerCase()==='get'){
+        if(type.toLocaleLowerCase()=='get'){
             // get的请求方式
            // `params` 是即将与请求一起发送的 URL 参数
-            options.params=data
+            option.params=data
         }else{
             // post的方式
-            options.data=data
+            option.data=data
         }
-        axios(options).then(res=>{
+        axios(option).then(res=>{
             if(res.data.status==='ok'){
                 resolve(res.data)
+                Message.success(res.data.msg)
             }else{
                 // ele提示框
                 Message.error(res.data.msg)

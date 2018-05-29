@@ -1,5 +1,7 @@
 import request from '../../helper/req'
-window.request=request;
+import auth from '../../api/auth'
+
+// window.request=request; 为了方便控制台调用
 export default {
   name : 'test',
   data() {
@@ -9,12 +11,17 @@ export default {
     open() {
       this.$message({showClose: true, message: '错了哦，这是一条错误消息', type: 'error'});
     },
-    open1() {
-      request('/auth/register','post',{
-        username:'xiaoqi',
-        password:'xiaoqi0505'
-      }).then(data=>{console.log(data)})
-      // request('/blog').then(data=>{console.log(data)})
+    open2() {
+      auth.register({username:'hahaha',password:'123456'})
+    },
+    open3() {
+      auth.login({username:'hahaha',password:'123456'})
+    },
+    open4() {
+      auth.logInfo()
+    },
+    open5() {
+      auth.logout()
     },
   }
 }
