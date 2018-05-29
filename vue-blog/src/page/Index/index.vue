@@ -6,5 +6,5 @@
   </div>
 </template>
 
-<script src='./template.js'></script>
-<style scoped lang='less' src='./template.less'></style>
+<script src='./index.js'></script>
+<style scoped lang='less' src='./index.less'></style>
