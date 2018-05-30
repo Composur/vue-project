@@ -12,4 +12,3 @@
 文档说明
 
 __[前后端接口的实现](https://github.com/Composur/vue-blog/blob/master/vue-blog/doc/API.md)__
-
