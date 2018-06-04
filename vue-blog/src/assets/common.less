@@ -1,0 +1,36 @@
+@import "./base.less";
+
+body {
+  font: 14px/1.6 Arial,"Microsoft YaHei","黑体","宋体",sans-serif;
+  color: #333;
+  margin: 0;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+
+.el-button {
+  color: @themeColor;
+  border: 1px solid @themeLighterColor;
+  background: none;
+  border-radius: 4px;  
+}
+
+.el-button.el-button--medium{
+  font-size: 13px;
+  padding: 0 8px;
+  font-weight: normal;
+  line-height: 28px;
+}
+
+
+.el-button:hover {
+  color: #fff;
+  background-color: @themeLighterColor;
+}
+
+.el-input.is-active .el-input__inner, .el-input__inner:focus, .el-textarea__inner:focus {
+  border-color: @themeLighterColor;
+}

@@ -9,30 +9,53 @@
     <script src="https://unpkg.com/vuex@2.0.0"></script>
 </head>
 <body>
+    <div id="app"></div>
     
-        <div id="app">
-                <p>{{ count }}</p>
-                <p>
-                  <button @click="increment">+</button>
-                  <button @click="decrement">-</button>
-                </p>
-              </div>
     <script>
 
-        // 创建一个count组件
-        const count={
-            template:`<div>{{count}}</div>`,
+        // Vue.use(Vuex)
+
+        const store=new Vuex.Store({
+            state:{
+                count:0,
+                firstName:'xu',
+                lastName:'tong'
+            },
+            mutations:{
+                add(state){
+                    state.count++
+                }
+            }
+        })
+
+        const Counter={
+            template:`
+                <div>
+                <p>{{count}}</p>        
+                <p>{{firstName}}</p>        
+                <p>{{lastName}}</p>  
+                <button v-on:click='add()'>add</button>      
+            </div>
+            `,
             computed:{
                 count() {
-                    return store.state.count
+                    return this.$store.state.count
+                },
+                ...Vuex.mapState(['firstName','lastName'])
+            },
+            methods:{
+                add(){
+                    this.$store.commit('add')
                 }
             }
         }
         const app=new Vue({
             el:'#app',
-            store,
-            components:{count},
-            template:`<div class='app'><count></count></div>`
+            store:store,
+            components:{Counter},
+            template:`
+                <div class='app'><Counter></Counter></div>
+            `
         })
     </script>
 </body>

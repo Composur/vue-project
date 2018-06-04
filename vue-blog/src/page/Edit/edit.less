@@ -1,14 +1,15 @@
-h1, h2 {
-    font-weight: normal;
+@import "../../assets/base.less";
+
+#edit, #create {
+  padding-bottom: 30px;
+
+  h1 {
+    text-align: center;
   }
-  ul {
-    list-style-type: none;
-    padding: 0;
+
+  .msg {
+    text-align: right;
+    font-size: 12px;
+    color: @textLighterColor;
   }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
-  }
+}

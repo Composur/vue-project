@@ -31,7 +31,8 @@ html,body,#app{height: 100%;}
     .header{
       // background: #000;
       grid-area: header;
-      padding: 0 12%;
+      padding: 0 12% ;
+      padding-bottom: 30px;
       border: 1px solid red;
     }
     .main{
@@ -40,7 +41,7 @@ html,body,#app{height: 100%;}
     }
     .footer{
       grid-area: footer;
-      padding: 0 12%;
+      padding: 10px 12%;
       border: 1px solid yellowgreen;
     }
   }
