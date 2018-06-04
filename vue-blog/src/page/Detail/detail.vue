@@ -8,7 +8,7 @@
     <section class="article">
 
                                 
-                                <h1 id="css-网格布局学习指南">CSS 网格布局学习指南</h1>
+      <h1 id="css-网格布局学习指南">CSS 网格布局学习指南</h1>
 <p>CSS 网格布局(Grid Layout) 是CSS中最强大的布局系统。 这是一个二维系统，这意味着它可以同时处理列和行，不像 <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">flexbox</a> 那样主要是一维系统。 你可以通过将CSS规则应用于父元素（成为网格容器）和该元素的子元素（网格元素），来使用网格布局。</p>
 <blockquote>
 <p><a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank">本文</a>出自于 <a href="http://chris.house/blog/a-complete-guide-css-grid-layout/" target="_blank">Chris House</a> 的个人博客，由<a href="https://jirengu.com" target="_blank">饥人谷</a> <a href="https://www.zhihu.com/people/jirengu-ruo-yu" target="_blank">若愚老师</a>翻译</p>

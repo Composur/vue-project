@@ -1,7 +1,11 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-  </div>
+  <section>
+    <div class="item">
+        <img src="" alt="">
+        <figcaption></figcaption>
+        <p></p>
+    </div>
+  </section>
 </template>
 
 <script src='./index.js'></script>
