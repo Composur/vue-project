@@ -35,7 +35,6 @@ html,body,#app{height: 100%;}
       background-size: cover;
       grid-area: header;
       padding: 0 12% ;
-      padding-bottom: 30px;
       border: 1px solid red;
     }
     .main{

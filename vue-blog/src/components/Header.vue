@@ -36,17 +36,18 @@ export default {
   padding: 0 12% 30px 12%;
   display: grid;
   justify-content: center;
-    position: relative;
+  position: relative;
+
   .login {
     display: none;
   }
   .on-login {
     display: none;
   }
-  .user{
-     position: absolute;
-     top: 0;
-     right: 10px;
+  .user {
+    position: absolute;
+    top: 0;
+    right: 10px;
   }
   img {
     width: 40px;
