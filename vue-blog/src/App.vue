@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <Header class="header"></Header>
-    <div class="main">
+    <main class="main">
         <router-view/>
-    </div>
+    </main>
     <Footer class="footer"></Footer>
   </div>
 </template>
@@ -22,9 +22,9 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-html,body,#app{height: 100%;}
-  #app{
-   display: grid;
+html,body,.app{height: 100vh;}
+  .app{
+  display: grid;
   grid-template-columns: 12% auto 12%;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "header header header"
@@ -36,6 +36,7 @@ html,body,#app{height: 100%;}
       grid-area: header;
       padding: 0 12% ;
       border: 1px solid red;
+      text-align: center;
     }
     .main{
       grid-area: main;
@@ -43,8 +44,8 @@ html,body,#app{height: 100%;}
     }
     .footer{
       grid-area: footer;
-      padding: 10px 12%;
-      border: 1px solid yellowgreen;
+      padding: 10px;
+      background:#ccc;;
     }
   }
 </style>

@@ -1,8 +1,19 @@
+import {mapActions} from 'vuex'
+
 export default {
-  name: 'test',
   data () {
     return {
-      msg: 'login!'
+      username: '',
+      password:''
+    }
+  },
+  methods:{
+    ...mapActions(['login']),
+    onLogin() {
+      this.login({username:this.username,password:this.password}).then(()=>{
+        this.$router.push({path:'/'})
+      })
+      alert(this.username+this.password)
     }
   }
 }

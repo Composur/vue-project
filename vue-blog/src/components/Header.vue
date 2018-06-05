@@ -1,14 +1,13 @@
 <template>
-<div  id="header">
+<div>
  <header :class="{login:isLogin,'no-login':!isLogin}">
-        <h1>header</h1>
         <div class='actions'>
-            <el-button>登录</el-button>
-            <el-button>注册</el-button>
+          <router-link to="/login"><el-button >登录</el-button></router-link>
+          <router-link to="/register"><el-button >注册</el-button></router-link>
         </div>
    </header>
     <header  :class="{login:!isLogin,'no-login':isLogin}">
-       <div class="user">
+       <div class="actions">
             <i class="edit el-icon-edit"></i>
          <img src="@/assets/logo.png" alt="avatar">
        </div>
@@ -18,42 +17,59 @@
 </template>
 
 <script>
+
+
+import router from '@/router/index'
+
+import {mapGetters, mapActions} from 'vuex'
+
 export default {
   data() {
     return {
-      isLogin: false
+      // isLogin: false
     };
   },
-  methods: {}
+
+  computed:{
+    ...mapGetters(['isLogin','user'])
+  },
+  // 声明周期 这个时候数据已经完成模板还没有挂载 ajax等 尽早的的得到数据
+  created() {
+    this.checkLogin()
+  },  
+  methods: {
+    ...mapActions(['checkLogin'])
+  }
 };
 </script>
 
 
 <style lang="less">
 @import url("../assets/base.less");
-#header {
-  background: @themeColor;
-  padding: 0 12% 30px 12%;
-  display: grid;
-  justify-content: center;
-  position: relative;
+header{
+  display: none;
 
-  .login {
-    display: none;
-  }
-  .on-login {
-    display: none;
-  }
-  .user {
-    position: absolute;
-    top: 0;
-    right: 10px;
-  }
-  img {
-    width: 40px;
-    height: auto;
-  }
 }
+  header.no-login{
+    display: block;
+    display: flex;
+    justify-content: flex-end;
+   .actions{
+     margin: 60px ;
+   }
+    img{
+       width: 35px;
+     }
+  }
+   header.login{
+      display: none;
+       .actions{
+     margin: 60px ;
+   }
+     img{
+       width: 40px;
+     }
+  }
 </style>
 
 

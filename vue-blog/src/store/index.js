@@ -10,5 +10,4 @@ export default new Vuex.Store({
         auth,
         blog
     }
-
 })

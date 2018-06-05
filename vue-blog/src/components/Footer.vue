@@ -1,10 +1,14 @@
 <template>
-    <p> Copyright@2018AMSS ASIA PTE LTD.</p>
+    <footer> 
+        <p>Copyright@2018TEST PTE LTD.</p>
+    </footer>
 </template>
 <style lang="less">
-    p{
-        display: grid;
-        justify-content: center;
-        background: #ccc;;
-    }
+footer {
+  p {
+    display: grid;
+    justify-content: center;
+    background: #ccc;
+  }
+}
 </style>
