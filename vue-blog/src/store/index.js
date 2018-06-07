@@ -6,7 +6,7 @@ import blog from './module/blog'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    modules:{
+    modules: {
         auth,
         blog
     }
