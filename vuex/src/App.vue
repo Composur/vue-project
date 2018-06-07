@@ -1,7 +1,7 @@
 <template>
   <div id="app">
   <div>
-    {{count}}
+    {{doneTodosCount}}
   </div>
   <button v-on:click="increment()">add</button>
   <button v-on:click="decrement()">subtract</button>
@@ -9,32 +9,34 @@
 </template>
 
 <script>
-
 // import store from '../store/index.js'
-import {mapState} from 'vuex'
+// console.log(store.getters.doneTodos)
+import { mapState,mapGetters} from "vuex";
 export default {
-// 创建一个vuex
-...mapState([]),
-  computed:{
+  // 创建一个vuex
+  ...mapState([]),
+  computed: {
     count() {
-      return this.store.state.count
+      return this.$store.state.count;
+    },
+    computed: {
+    ...mapGetters(['doneTodoCount','anotherGetter'])
     }
   },
-  methods:{
-     increment() {
-       this.store.commit('increment')
+  methods: {
+    increment() {
+      this.$store.commit("increment");
     },
     decrement() {
-       this.store.commit('decrement')
-    },
+      this.$store.commit("decrement");
+    }
   }
-}
-
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

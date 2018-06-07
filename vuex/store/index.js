@@ -3,7 +3,17 @@ import vuex from 'vuex'
 vue.use(vuex)
 export default new vuex.Store({
     state:{
-        count:0
+        todos:[
+            { id: 1, text: '...', done: true },
+            { id: 2, text: '...', done: false }
+        ],
+    },
+    getters: {
+        doneTodos:state=>{
+            return state.todos.filter((todo)=>{
+                todo.done
+            }).length
+        }   
     },
     mutations:{
         increment() {
