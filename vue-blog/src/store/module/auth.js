@@ -49,7 +49,6 @@ const actions = {
         commit('setLogin',{isLogin:false})
     },
     async checkLogin({commit,state}) {
-        console.log('checkLogin!!!')
         if(state.isLogin) return true
         let res=await auth.logInfo()
         commit('setLogin',{isLogin:res.isLogin})

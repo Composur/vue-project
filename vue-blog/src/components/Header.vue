@@ -10,18 +10,19 @@
     <header v-if='isLogin' >
        <div class="actions">
             <i class="edit el-icon-edit"></i>
-         <!-- <img :src="user.avatar" :alt="user.username"> -->
-         <img src="@/assets/logo.png" alt="user.username">
+         <img :src="user.avatar" :alt="user.username">
+         <!-- <img src="@/assets/logo.png" alt="user.username"> -->
          <button v-on:click="logout">退出</button>
        </div>
    </header>
-</div>
+</div>  
   
 </template>
 
 <script>
 import router from "@/router/index";
-
+import auth from '@/api/auth'
+window.auth=auth
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -35,7 +36,16 @@ export default {
   },
   // 声明周期 这个时候数据已经完成模板还没有挂载 ajax等 尽早的的得到数据
   created() {
-    this.checkLogin()
+
+/*
+  1.渲染的时候的优化，
+    a.让header默认隐藏
+    b.
+*/ 
+
+    this.checkLogin().then(isLogin=>{if(isLogin){
+        
+    }})
   },
    methods: {
     ...mapActions(['checkLogin','logout'])

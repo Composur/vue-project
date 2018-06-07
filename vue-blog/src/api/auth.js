@@ -17,9 +17,7 @@ export default{
     },
     logInfo(){
         // isLogin=true or false
-        return request(options.LOGIN_INFO).then(data=>{
-            console.log(data.isLogin)
-        })
+        return request(options.LOGIN_INFO)
     },
     logout(){
         // msg 用户未登录 or 已注销

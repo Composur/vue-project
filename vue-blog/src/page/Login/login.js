@@ -10,6 +10,7 @@ export default {
   methods:{
     ...mapActions(['login']),
     onLogin() {
+      console.log('login')
       this.login({username:this.username,password:this.password}).then(()=>{
         this.$router.push({path:'/'})
       })
