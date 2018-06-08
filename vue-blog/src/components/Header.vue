@@ -9,7 +9,7 @@
     <!-- <header  :class="{login:!isLogin,'no-login':isLogin}" > -->
     <header v-if='isLogin' >
        <div class="actions">
-            <i class="edit el-icon-edit"></i>
+            <router-link to="/create"><i class="edit el-icon-edit"></i></router-link>
          <img :src="user.avatar" :alt="user.username">
          <!-- <img src="@/assets/logo.png" alt="user.username"> -->
          <button v-on:click="logout">退出</button>

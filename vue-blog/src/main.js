@@ -16,3 +16,5 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+const log=console.log.bind(console)
+window.log=log
