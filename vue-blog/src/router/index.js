@@ -11,7 +11,8 @@ import User from '@/page/User/user.vue'
 import store from '@/store/index'
  window.store=store
  let {isLogin}=store.dispatch('checkLogin').then(result=>console.log(result))
- console.log(isLogin)
+
+ console.log()
 
 Vue.use(Router)
 
@@ -62,7 +63,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (true) {
+    if (!isLogin) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }
