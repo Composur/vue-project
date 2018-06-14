@@ -28,7 +28,8 @@ export default {
     delBlog({blogId}){
         return request(URL.BLOGID.replace(':blogId','blogId'),'DELETE')
     },
-    createBlog({title='',content='',description=''}={title:'',content:'',description:''}){
+    createBlog({title='',content='',description='',atIndex=false}={title:'',content:'',description:''}){
+        console.log('create!')
         return request(URL.BLOG,'POST',{title,content,description})
     }
 }
