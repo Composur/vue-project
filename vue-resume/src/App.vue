@@ -41,13 +41,14 @@
         </ContextList>
       </div>
       <div class="right">
-        <ContextList title="About me">
+        <ContextList title="可编辑的简历">
           <ListItemAbout slot="listItem"></ListItemAbout>
         </ContextList>
         <ContextList title="技能">
-          <ListItemSkill slot="listItem" title="JavaScript" :percent="80"></ListItemSkill>
-          <ListItemSkill slot="listItem" title="Html5 + css3" :percent="60"></ListItemSkill>
-          <ListItemSkill slot="listItem" title="Vue" :percent="30"></ListItemSkill>
+          <ListItemSkill slot="listItem" title="JavaScript" :percent="70"></ListItemSkill>
+          <ListItemSkill slot="listItem" title="Html5 + css3" :percent="70"></ListItemSkill>
+          <ListItemSkill slot="listItem" title="Vue+React" :percent="40"></ListItemSkill>
+          <ListItemSkill slot="listItem" title="NodeJS" :percent="40"></ListItemSkill>
         </ContextList>
         <ContextList title="工作经历">
           <ListItemEducation slot="listItem"></ListItemEducation>
@@ -64,7 +65,7 @@
         </ContextList>
       </div>
     </div>
-    <div class="guide">
+    <!-- <div class="guide">
       <ul>
         <li>
           <img src="./assets/guide_click_left.png" height="60" width="60" alt="">
@@ -95,13 +96,13 @@
           </div>
         </li>
       </ul>
-    </div>
-    <button class="sap" @click="saveAsImage">Save as Image</button>
+    </div> -->
+    <button class="sap" @click="saveAsImage">另存为图片</button>
     <div class="footer">
-      <a href="https://github.com/luosijie/vue-resume" target="_blank">
+      <a href="https://github.com/Composur" target="_blank">
         <img src="./assets/social-github.png" height="36" width="36" alt="">
       </a>
-      vue-resume designed by <a href="https://github.com/Composur">Composure</a>
+      vue-resume designed by <a href="https://github.com/Composur" target="_blank">Composure</a>
     </div>
   </div>
 </template>
