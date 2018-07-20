@@ -2,7 +2,7 @@
   <div class="index">
 
     <div class="header">
-      <div class="navbar">
+      <div class="navbar clearfix">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">{{title}}</a>
         </div>
@@ -40,13 +40,14 @@
           <div class="panel-body">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="用户名" v-model="username">
+              
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" placeholder="密码" v-model="password">
+              <input type="password" class="form-control" placeholder="密码" v-model="password" @keyup.enter='login'>
             </div>
           </div>
-          <p class="rlBtn" @click="login">登录</p>
-          <p>没有账号?去<span @click="toggleRL" class="toggle">注册</span></p>
+          <p class="rlBtn" @click="login" >登录</p>
+          <p>没有账号?去<span @click="toggleRL" class="toggle">注册</span><span>&nbsp;测试账户:admin/admin</span></p>
           <p class="text-danger">{{ warningInfo }}</p>
         </div>
 
@@ -181,6 +182,9 @@
 }
 .index
   .header
+    position fixed;
+    top:0;
+    width:100%;
     box-sizing:border-box;
     height:90px;
     padding:25px 150px;
@@ -188,6 +192,8 @@
     // background-color #D6F2FE;
     border-color: #ccc;
     box-shadow:0 1px 2px rgba(151,151,151,0.58);
+    z-index 1;
+    min-width 900px;
     .navbar
       height:40px;
       line-height:40px;
@@ -213,7 +219,7 @@
     display:flex;
     padding:20px;
     // border:1px solid red;
-    margin-top :0.2rem;
+    margin-top :90px;
     background-image url('../../../static/bg02.jpg');
     background-color #D6F2FE;
     .mainLeft
