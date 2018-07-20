@@ -13,7 +13,7 @@ var Cookies = require('cookies');
 var cors = require('cors');
 // 创建app应用
 var app = express();
-app.use(cors());
+
 
 var User = require('./models/User.js');
 
@@ -22,15 +22,24 @@ var User = require('./models/User.js');
 app.use(bodyParser.urlencoded({extended: true}));
 //在原有的基础上加上下面代码即可
 app.use(bodyParser.json())
+
+
+// cors
+// app.use(function (req, res, next) {
+//     // if(req.headers.origin == 'http://47.94.237.28:80' || 'http://localhost:8080'){
+//         res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+//         // res.header('Access-Control-Allow-Origin', 'http://47.94.237.28:80');
+//         // res.header('Access-Control-Allow-Origin', '*');
+//         res.header('Access-Control-Allow-Credentials', 'true');
+//         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     // } 
+   
+// })
+
+app.use(cors());
+
 // 配置cookies
-app.use(function (req, res, next) {
-    // if(req.headers.origin == 'http://localhost:8080' ){
-        // res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-        res.header('Access-Control-Allow-Origin', 'http://47.94.237.28:80');
-        // res.header('Access-Control-Allow-Origin', '');
-        res.header('Access-Control-Allow-Credentials', 'true');
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    // } 
+app.use(function(req,res,next){
     req.cookies = new Cookies(req, res);
     // 解析用户登录的信息
     req.userInfo = null;
@@ -49,10 +58,6 @@ app.use(function (req, res, next) {
         next();
     }
 })
-
-
-
-
 
 
 
