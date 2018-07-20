@@ -24,7 +24,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 // 配置cookies
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8081');
+    res.header('Access-Control-Allow-Origin', 'http://47.94.238.28:8081');
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     req.cookies = new Cookies(req, res);
@@ -61,7 +62,7 @@ mongoose.connect("mongodb://localhost:27017/blog", function (err) {
     } else {
         console.log("数据库连接成功");
         app.listen(8081, function () {
-            console.log('app is listening on port 8080.');
+            console.log('app is listening on port 8081.');
         })
     }
 });
