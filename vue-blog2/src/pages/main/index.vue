@@ -185,6 +185,8 @@
     height:90px;
     padding:25px 150px;
     background-color:#fff;
+    // background-color #D6F2FE;
+    border-color: #ccc;
     box-shadow:0 1px 2px rgba(151,151,151,0.58);
     .navbar
       height:40px;
@@ -210,6 +212,10 @@
   .main
     display:flex;
     padding:20px;
+    // border:1px solid red;
+    margin-top :0.2rem;
+    background-image url('../../../static/bg02.jpg');
+    background-color #D6F2FE;
     .mainLeft
       flex:2
       padding-left:75px;

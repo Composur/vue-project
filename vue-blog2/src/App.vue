@@ -17,5 +17,6 @@ export default {
 
 <style lang="stylus">
 #app
-	background-color:rgba(66, 185, 131, 0.19)
+	background-color:rgba(66, 185, 131, 0.19);
+  
 </style>

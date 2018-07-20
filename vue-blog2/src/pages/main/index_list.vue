@@ -18,7 +18,8 @@
       </div>
     </div>
 
-    <nav class="v-pager">
+
+    <nav class="v-pager" v-if="data.pages>0">
       <ul>
         <li @click="previous" v-if="data.page > 1"><span class="enable">上一页</span></li>
         <li v-else><span class="disable">上一页</span></li>
@@ -29,6 +30,7 @@
         <li v-else><span class="disable">下一页</span></li>
       </ul>
     </nav>
+    <div v-else>抱歉！这个版块暂时还没有内容。</div>
 
   </div>
 </template>
@@ -145,8 +147,8 @@
           color: #fff;
           cursor: pointer;
     .v-pager
-    	position:absolute;
-    	bottom:5px;
+    	color:#42B983;
+    	// position:absolute;
     	width:100%;
     	&>ul
     		display:flex;
@@ -156,6 +158,5 @@
     			.enable
     				cursor:pointer;
 				.disable
-					cursor:default;
-					color:#ccc;
+					cursor:pointer;			
 </style>
