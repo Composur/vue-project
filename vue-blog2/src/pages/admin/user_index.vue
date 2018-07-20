@@ -33,7 +33,7 @@
     data() {
       return {
         tableData: [],
-        url: 'http://localhost:8081/admin/user?page=',
+        url: 'http://'+this.$url+':8081/admin/user?page=',
       }
     },
     created() {

@@ -31,9 +31,9 @@
       }
     },
     created() {
-      this.$http.get('http://localhost:8081/admin').then(response => {
+      this.$http.get('http://'+this.$url+':8081/admin').then(response => {
         if (response.data.code != 0) {
-          window.location.href = "http://localhost:8080"
+          window.location.href = "http://'+this.$url+':8080"
           return;
         } else {
           this.adminName = response.data.userInfo.username;

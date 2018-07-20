@@ -85,7 +85,7 @@
       }
     },
     created() {
-      this.$http.get('http://localhost:8081').then(response => {
+      this.$http.get('http://'+this.$url+':8081').then(response => {
         if (!response.data.code) { // 之前登陆过
           this.showLogin = !this.showLogin;
           this.showLogined = !this.showLogined;
@@ -118,7 +118,7 @@
           this.warningInfo = '两次输入的密码不一致';
           return;
         }
-        this.$http.post('http://localhost:8081/api/user/register', {
+        this.$http.post('http://'+this.$url+':8081/api/user/register', {
           username: this.username,
           password: this.password,
           repassword: this.repassword
@@ -144,7 +144,7 @@
           this.warningInfo = '密码不能为空';
           return;
         }
-        this.$http.post('http://localhost:8081/api/user/login', {
+        this.$http.post('http://'+this.$url+':8081/api/user/login', {
           username: this.username,
           password: this.password,
         }).then(response => {
@@ -164,7 +164,7 @@
         })
       },
       logout() {
-        this.$http.get('http://localhost:8081/api/user/logout').then(response => {
+        this.$http.get('http://'+this.$url+':8081/api/user/logout').then(response => {
           this.showLogin = !this.showLogin;
           this.showLogined = !this.showLogined;
           this.user = {};

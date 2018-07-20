@@ -54,7 +54,7 @@
     methods: {
       getData() {
         let id = this.$route.query['id'] || '';
-        this.$http.get('http://localhost:8081/category?id=' + id + '&page=' + this.data.page).then(response => {
+        this.$http.get('http://'+this.$url+':8081/category?id=' + id + '&page=' + this.data.page).then(response => {
           response.data.contents.forEach((content) => {
             content.addTime = this.formatDate(content.addTime);
           })

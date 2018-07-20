@@ -34,7 +34,7 @@
     },
     methods: {
       getData() {
-        this.$http.get('http://localhost:8081/admin/category/edit?id=' + this.$route.query['id']).then(response => {
+        this.$http.get('http://'+this.$url+':8081/admin/category/edit?id=' + this.$route.query['id']).then(response => {
           this.category = response.data.category;
         }, response => {
           console.log('error:' + response);
@@ -48,7 +48,7 @@
           });
           return;
         }
-        this.$http.post('http://localhost:8081/admin/category/edit', {
+        this.$http.post('http://'+this.$url+':8081/admin/category/edit', {
           id: this.category._id.toString(),
           name: this.form.newCateName,
         }).then(response => {
