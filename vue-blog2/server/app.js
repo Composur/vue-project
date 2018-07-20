@@ -10,10 +10,10 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 // 加载cookies模块
 var Cookies = require('cookies');
-// var cors = require('cors');
+var cors = require('cors');
 // 创建app应用
 var app = express();
-// app.use(cors());
+app.use(cors());
 
 var User = require('./models/User.js');
 
@@ -24,10 +24,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 // 配置cookies
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8081');
-    res.header('Access-Control-Allow-Origin', 'http://47.94.238.28:8081');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    // if(req.headers.origin == 'http://localhost:8080' ){
+        // res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+        res.header('Access-Control-Allow-Origin', 'http://47.94.237.28:80');
+        // res.header('Access-Control-Allow-Origin', '');
+        res.header('Access-Control-Allow-Credentials', 'true');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    // } 
     req.cookies = new Cookies(req, res);
     // 解析用户登录的信息
     req.userInfo = null;
@@ -46,6 +49,12 @@ app.use(function (req, res, next) {
         next();
     }
 })
+
+
+
+
+
+
 
 /*
  * 根据不同的功能划分模块(路由分块)

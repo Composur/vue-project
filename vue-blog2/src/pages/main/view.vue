@@ -107,6 +107,7 @@
           });
           return;
         }
+        this.$http.withCredentials = true;
         this.$http.post('http://'+this.$url+':8081/comment/post', {
           contentid: this.$route.query['id'],
           content: this.editing_comment,
