@@ -1,7 +1,12 @@
 <template>
-  <div class="admin_index">
-    <el-menu router>
-      <el-menu-item index="/admin">后台主页</el-menu-item>
+  <div>
+    <!-- <div class="admin_header">
+     <div class="admin_logo"><img src="../../../static/logo.png" alt="" srcset=""></div>
+    </div> -->
+    <div class="admin_index">
+    <el-menu router class="menu">
+      <img src="../../../static/logo.png" alt="" srcset="">
+      <el-menu-item index="/admin">管理主页</el-menu-item>
       <el-menu-item index="/admin/user">用户管理</el-menu-item>
       <el-submenu index="3">
         <template slot="title">分类管理</template>
@@ -17,9 +22,12 @@
         <template slot="title">{{ adminName }}</template>
         <el-menu-item index="/">退出</el-menu-item>
       </el-submenu>
+     <el-submeun index="6">
+       <el-menu-item index="/">回到前台</el-menu-item>
+     </el-submeun>
     </el-menu>
-
     <router-view id="levelTwo"></router-view>
+  </div>
   </div>
 </template>
 
@@ -48,10 +56,28 @@
 </script>
 
 <style lang="stylus">
+.admin_header
+  background-color #F8F8FD;
+  border:1px solid red;
+  display flex;
+  .admin_logo
+    margin: 20px;
+    width 80px;;
+    border 1px solid black;
+    img 
+      width 100%;
+      height 100%;
 .admin_index
   display:flex;
+  background-color #F8F8FD;
+  .menu
+    padding-top :50px;
   .el-menu
-    width:200px;
+    flex 0.2;
+    text-align center;
+    background-color #E6E3EE;
+    img
+      width 80px;
   #levelTwo
     position: relative;
     display:flex;

@@ -28,7 +28,7 @@
               <input type="password" class="form-control" placeholder="密码" v-model="password">
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" placeholder="确认密码" v-model="repassword">
+              <input type="password" class="form-control" placeholder="确认密码" v-model="repassword" @keyup.enter="register">
             </div>
           </div>
           <p class="rlBtn" @click="register">注册</p>
