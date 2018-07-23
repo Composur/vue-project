@@ -1,9 +1,9 @@
 <template>
   <div class="articleList">
 
-    <div class="article" v-for="content in data.contents">
+    <div class="article" v-for="content in data.contents" v-bind:title="message">
       <div class="article-time">{{ content.addTime }}</div>
-      <div class="article-title">
+      <div class="article-title" v-bind:title="message">
         <router-link :to="{path:'/view', query: {id: content._id}}">{{ content.title }}</router-link>
       </div>
       <div class="line"></div>
@@ -14,7 +14,7 @@
           <span>评论: <el-tag type="primary">{{ content.comments.length }}</el-tag></span>
         </p>
         <p class="summary">{{ content.description }}</p>
-        <router-link :to="{path:'/view', query: {id: content._id}}" class="more">阅读全文</router-link>
+        <router-link :to="{path:'/view', query: {id: content._id}}" class="more" >阅读全文</router-link>
       </div>
     </div>
 
@@ -45,6 +45,7 @@
           limit: 0,
           pages: 0,
           page: 1,
+          message: '页面加载于 ' + new Date().toLocaleString()
         }
       }
     },

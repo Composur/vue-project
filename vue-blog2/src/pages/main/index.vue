@@ -51,7 +51,8 @@
           <p class="text-danger">{{ warningInfo }}</p>
         </div>
 
-        <div class="info" v-show="showLogined">
+        <transition name="fade">
+         <div class="info" v-show="showLogined">
           <div class="title">你好, <span class="text-danger">{{ username }}</span></div>
           <p v-if="isAdmin">您是管理员,可以进入
             <el-button type="text">
@@ -61,6 +62,8 @@
           <p v-else>欢迎来到我的博客</p>
           <p class="text-danger" id="logout" @click="logout">退出</p>
         </div>
+        </transition>
+       
       </div>
     </div>
   </div>
@@ -264,6 +267,10 @@
         .toggle
           color:#0f88eb;
           cursor:pointer;
+      .fade-enter-active, .fade-leave-active 
+        transition: opacity .5s;
+      .fade-enter, .fade-leave-to
+        opacity: 0;
       .info
         width:300px;
         font-size:14px;
