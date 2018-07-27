@@ -84,7 +84,7 @@
         warningInfo: '',
         isAdmin: false,
         categories: [],
-        title:'logo'
+        title:'😀😍😋'
       }
     },
     created() {
