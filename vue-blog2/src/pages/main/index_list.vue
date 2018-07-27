@@ -2,7 +2,7 @@
   <div class="articleList">
 
     <div class="article" v-for="content in data.contents" v-bind:title="message">
-      <div class="article-time">{{ content.addTime }}</div>
+      <!-- <div class="article-time">{{ content.addTime }}</div> -->
       <div class="article-title" v-bind:title="message">
         <router-link :to="{path:'/view', query: {id: content._id}}">{{ content.title }}</router-link>
       </div>
@@ -12,9 +12,11 @@
           <span>类别: <el-tag type="primary">{{ content.category.name }}</el-tag></span>
           <span>阅读量: <el-tag type="primary">{{ content.views }}</el-tag></span>
           <span>评论: <el-tag type="primary">{{ content.comments.length }}</el-tag></span>
+          <span>发表时间: <el-tag type="primary">{{ content.addTime }}</el-tag></span>
         </p>
         <p class="summary">{{ content.description }}</p>
         <router-link :to="{path:'/view', query: {id: content._id}}" class="more" >阅读全文</router-link>
+        <!-- <span class="article-time">{{content.addTime}}</span> -->
       </div>
     </div>
 
@@ -57,7 +59,8 @@
         let id = this.$route.query['id'] || '';
         this.$http.get('http://'+this.$url+':8081/category?id=' + id + '&page=' + this.data.page).then(response => {
           response.data.contents.forEach((content) => {
-            content.addTime = this.formatDate(content.addTime);
+            content.addTime = this.getDateDiff(new Date(this.formatDate(content.addTime)).getTime());
+            console.log(content.addTime)
           })
           this.data = response.data;
         }, response => {
@@ -80,6 +83,44 @@
         }
         this.getData();
       },
+getDateDiff(dateTimeStamp){
+	let minute = 1000 * 60;
+	let hour = minute * 60;
+	let day = hour * 24;
+	let halfamonth = day * 15;
+	let month = day * 30;
+	let now = new Date().getTime();
+    let diffValue = now - dateTimeStamp;
+    let monthC =diffValue/month;
+	let weekC =diffValue/(7*day);
+	let dayC =diffValue/day;
+	let hourC =diffValue/hour;
+    let minC =diffValue/minute;
+    let result=null;
+	if(diffValue < 0){
+        return;
+    }else{
+        if(monthC>=1){
+            result="" + parseInt(monthC) + "月前";
+        }
+        else if(weekC>=1){
+            result="" + parseInt(weekC) + "周前";
+        }
+        else if(dayC>=1){
+            result=""+ parseInt(dayC) +"天前";
+        }
+        else if(hourC>=1){
+            result=""+ parseInt(hourC) +"小时前";
+        }
+        else if(minC>=1){
+            result=""+ parseInt(minC) +"分钟前";
+        }else{
+            result="刚刚";
+        }
+    }
+	return result;
+}
+
     },
     watch: { //避免同级路由（如收藏的歌单之间相互跳转url变化但是组件不变化）相互跳转组件不刷新
       '$route' (to, from) {
@@ -102,11 +143,6 @@
       box-shadow:0 1px 2px rgba(151,151,151,0.58);
       margin-bottom 20px;
       min-height: 250px;
-      .article-time
-        margin-bottom: 5px;
-        line-height: 24px;
-        font-weight: bold;
-        color: #727272;
       .article-title
         font-size: 24px;
         line-height: 32px;
@@ -147,6 +183,9 @@
           font-size: 16px;
           color: #fff;
           cursor: pointer;
+        .article-time
+          font-size :12px;
+          color :#ccc;
     .v-pager
     	color:#42B983;
     	// position:absolute;

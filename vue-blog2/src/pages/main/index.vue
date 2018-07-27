@@ -4,7 +4,9 @@
     <div class="header">
       <div class="navbar clearfix">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">{{title}}</a>
+          <a class="navbar-brand" href="/">
+            <span class="logo-world">{{title}}</span>
+          </a>
         </div>
         <ul class="nav">
           <li v-for="category in categories">
@@ -84,7 +86,7 @@
         warningInfo: '',
         isAdmin: false,
         categories: [],
-        title:'😀😍😋'
+        title:'😍'
       }
     },
     created() {
@@ -203,9 +205,22 @@
       .navbar-header
         float:left;
         .navbar-brand
+          line-height :1.2;
+          // border:1px solid red;
+          background-color #D6F2FE
+          display:inline-block;
+          width :60px;
+          height :60px;
+          border-radius :50%;
           font-size:20px;
           color: #2c3e50;
           font-weight:500;
+          position relative;
+          .logo-world
+            position absolute;
+            top: 15px;
+            left: 15px;
+            // border :1px solid red;   
       .nav
         float:right;
         margin-right:100px;
