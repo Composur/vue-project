@@ -12,8 +12,8 @@ Vue.use(util);
 
 axios.defaults.withCredentials = true
 Vue.prototype.$http = axios
-Vue.prototype.$url='47.94.237.28'
-// Vue.prototype.$url='localhost'
+// Vue.prototype.$url='47.94.237.28'
+Vue.prototype.$url='localhost'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
