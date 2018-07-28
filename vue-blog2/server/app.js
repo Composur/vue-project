@@ -13,9 +13,18 @@ var Cookies = require('cookies');
 var cors = require('cors');
 // 创建app应用
 var app = express();
+app.listen()
 
+require('./dbConnect/mongodb')
 
 var User = require('./models/User.js');
+
+
+const config=require('../config/config.default')
+
+app.listen(config.server_port,err=>{
+    console.log(`server start on port ：${config.server_port}`)
+})
 
 
 // 配置body-parser 配置好后就可以通过request的body属性获取数据了
@@ -68,13 +77,13 @@ app.use('/api', require('./routers/api'));
 app.use('/', require('./routers/main'));
 
 
-mongoose.connect("mongodb://localhost:27017/blog", function (err) {
-    if (err) {
-        console.log("数据库连接失败");
-    } else {
-        console.log("数据库连接成功");
-        app.listen(8081, function () {
-            console.log('app is listening on port 8081.');
-        })
-    }
-});
+// mongoose.connect("mongodb://localhost:27017/blog", function (err) {
+//     if (err) {
+//         console.log("数据库连接失败");
+//     } else {
+//         console.log("数据库连接成功");
+//         app.listen(8081, function () {
+//             console.log('app is listening on port 8081.');
+//         })
+//     }
+// });
