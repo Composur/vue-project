@@ -8,6 +8,7 @@ var User = require('../models/User');
 var Category = require('../models/Category');
 var Content = require('../models/Content');
 
+const Files=require('../controller/files')
 
 // 统一返回格式
 var responseData;
@@ -362,4 +363,10 @@ router.get('/content/delete', function (req, res, next) {
 })
 
 
+
+// upload and download
+
+router.post('/upload',Files.upload)
+
+router.get('/download',Files.download)
 module.exports = router;

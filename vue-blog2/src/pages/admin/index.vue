@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <!-- <div class="admin_header">
-     <div class="admin_logo"><img src="../../../static/logo.png" alt="" srcset=""></div>
-    </div> -->
+  
     <div class="admin_index">
     <el-menu router class="menu">
       <img src="../../../static/logo.png" alt="" srcset="">
@@ -28,7 +25,8 @@
     </el-menu>
     <router-view id="levelTwo"></router-view>
   </div>
-  </div>
+
+  
 </template>
 
 <script type="es6">

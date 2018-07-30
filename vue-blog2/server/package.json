@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon app.js"
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "cookies": "^0.7.0",
     "cors": "^2.8.4",
     "express": "^4.15.4",
+    "formidable": "^1.2.1",
     "mongoose": "^4.11.6"
   }
 }
