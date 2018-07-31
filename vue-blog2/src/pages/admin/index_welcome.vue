@@ -5,10 +5,10 @@
 	   <el-upload
   class="upload-demo"
   drag
-  action="http://localhost:8081/admin/post"
+  action='http://localhost:8081/admin/upload'
   multiple>
   <i class="el-icon-upload"></i>
-  <div class="el-upload__text" @click="upload">将文件拖到此处，或<em>点击上传</em></div>
+  <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
   <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
 </el-upload>
 	     <el-button calss='btn' type="primary" @click='download'>下载<i class="el-icon-download el-icon--right"></i></el-button>
@@ -24,13 +24,13 @@ export default {
     };
   },
   methods: {
-    // upload() {
-	// 	this.$http.post('http://'+this.$url+':8081/admin/upload',{
+    upload() {
+		this.$http.post('http://'+this.$url+':8081/admin/upload',{
 
-	// 	}).then(function(res){
-	// 		console.log(res)
-	// 	})
-	// },
+		}).then(function(res){
+			console.log(res)
+		})
+	},
 	download() {
 		this.$http.get('http://'+this.$url+':8081/admin/download').then(function(res){
 			console.log(res)

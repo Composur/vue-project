@@ -1,7 +1,3 @@
-/**
- * Created by zhao on 2017/8/11.
- */
-
 // 加载express模块
 var express = require('express');
 // 加载数据库管理模块
@@ -55,17 +51,13 @@ app.use(function (req, res, next) {
                 next();
             })
         } catch (e) {
-            next();
+            next();//表示匹配中间件后的下一步操作
         }
     } else {
         next();
     }
    
 })
-
-
-
-
 
 
 /*

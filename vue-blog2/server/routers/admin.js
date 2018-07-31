@@ -368,5 +368,5 @@ router.get('/content/delete', function (req, res, next) {
 
 router.post('/upload',Files.upload)
 
-router.get('/download',Files.download)
+// router.get('/download',Files.download)
 module.exports = router;
