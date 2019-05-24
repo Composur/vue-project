@@ -49,7 +49,9 @@
             </div>
           </div>
           <p class="rlBtn" @click="login" >登录</p>
-          <p>没有账号?去<span @click="toggleRL" class="toggle">注册</span><span>&nbsp;测试账户:admin/admin</span></p>
+          <p>没有账号?去<span @click="toggleRL" class="toggle">注册</span>
+          <!-- <span>&nbsp;测试账户:admin/admin</span> -->
+          </p>
           <p class="text-danger">{{ warningInfo }}</p>
         </div>
 
