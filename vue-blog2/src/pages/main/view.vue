@@ -80,7 +80,7 @@
         }
       });
       this.load = true;
-      this.$http.get('http://'+this.$url+':8081/view?contentid=' + this.$route.query['id']).then(response => {
+      this.$http.get('/view?contentid=' + this.$route.query['id']).then(response => {
         console.log(response.data);
         this.load = false;
         this.content = response.data.content
@@ -108,7 +108,7 @@
           return;
         }
         this.$http.withCredentials = true;
-        this.$http.post('http://'+this.$url+':8081/comment/post', {
+        this.$http.post('/comment/post', {
           contentid: this.$route.query['id'],
           content: this.editing_comment,
         }).then(response => {

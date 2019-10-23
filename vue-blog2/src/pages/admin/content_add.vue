@@ -63,7 +63,7 @@
       }
     },
     created() {
-      this.$http.get('http://'+this.$url+':8081/admin/content/add').then(response => {
+      this.$http.get('/admin/content/add').then(response => {
         this.form.categories = response.data.categories;
         // console.log(response.data)
       }, response => {
@@ -79,7 +79,7 @@
           });
           return;
         }
-        this.$http.post('http://'+this.$url+':8081/admin/content/add', {
+        this.$http.post('/admin/content/add', {
           category: this.form.selected,
           title: this.form.title,
           description: this.form.desc,

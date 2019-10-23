@@ -25,14 +25,14 @@ export default {
   },
   methods: {
     upload() {
-		this.$http.post('http://'+this.$url+':8081/admin/upload',{
+		this.$http.post('/admin/upload',{
 
 		}).then(function(res){
 			console.log(res)
 		})
 	},
 	download() {
-		this.$http.get('http://'+this.$url+':8081/admin/download').then(function(res){
+		this.$http.get('/admin/download').then(function(res){
 			console.log(res)
 		})
 	}

@@ -36,7 +36,7 @@
     data() {
       return {
         tableData: [],
-        url: 'http://'+this.$url+':8081/admin/category?page=',
+        url: '/admin/category?page=',
         render: true,
       }
     },
@@ -46,7 +46,7 @@
         this.tableData = response.data.categories;
       },
       deleteCategory(id) {
-        this.$http.get('http://'+this.$url+':8081/admin/category/delete?id=' + id).then(response => {
+        this.$http.get('/admin/category/delete?id=' + id).then(response => {
           let that = this;
           this.render = false;
           this.$nextTick(function () {

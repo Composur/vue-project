@@ -36,7 +36,7 @@
           });
           return;
         }
-        this.$http.post('http://'+this.$url+':8081/admin/category/add', {
+        this.$http.post('/admin/category/add', {
           name: this.form.newCateName,
         }).then(response => {
           if (response.data.code != 0) {

@@ -64,7 +64,7 @@
       }
     },
     created() {
-      this.$http.get('http://'+this.$url+':8081/admin/content/edit?id=' + this.$route.query['id']).then(response => {
+      this.$http.get('/admin/content/edit?id=' + this.$route.query['id']).then(response => {
         this.form.title = response.data.content.title;
         this.form.desc = response.data.content.description;
         this.form.content = response.data.content.content;
@@ -83,7 +83,7 @@
           });
           return;
         }
-        this.$http.post('http://'+this.$url+':8081/admin/content/edit', {
+        this.$http.post('/admin/content/edit', {
           id: this.$route.query['id'],
           category: this.form.selected,
           title: this.form.title,

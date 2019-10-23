@@ -52,7 +52,7 @@
     data() {
       return {
         tableData: [],
-        url: 'http://'+this.$url+':8081/admin/content?page=',
+        url: '/admin/content?page=',
         render: true,
       }
     },
@@ -64,7 +64,7 @@
         this.tableData = response.data.contents;
       },
       deleteContent(id) {
-        this.$http.get('http://'+this.$url+':8081/admin/content/delete?id=' + id).then(response => {
+        this.$http.get('/admin/content/delete?id=' + id).then(response => {
           this.render = false;
           this.$nextTick(function () {
             this.render = true;
