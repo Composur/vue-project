@@ -15,7 +15,6 @@ import content_edit from '../pages/admin/content_edit.vue'
 
 
 Vue.use(Router)
-
 export default new Router({
   routes: [
     {
@@ -42,7 +41,7 @@ export default new Router({
       children: [
         {
           path: '/admin',
-          component: index_welcome
+          component: index_welcome,
         },
         {
           path: '/admin/user',
@@ -72,7 +71,34 @@ export default new Router({
           path: '/admin/content/edit',
           component: content_edit
         },
+        {
+          path:'/false',
+          redirect:'/'
+        },
+        {
+          path: "/*",
+          redirect: "/"
+        }
       ]
     }
-  ]
+  ],
+  // scrollBehavior(to, from,savedPosition) {
+  //   return {
+  //     x: 0,
+  //     y: 0
+  //   }
+  // }
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      // 通过 `vm` 访问组件实例
+      console.log(vm)
+    })
+  }
 })

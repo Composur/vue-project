@@ -45,7 +45,6 @@
           <div class="panel-body">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="用户名" v-model="username">
-              
             </div>
             <div class="form-group">
               <input type="password" class="form-control" placeholder="密码" v-model="password" @keyup.enter='login'>
@@ -109,14 +108,11 @@
           this.isAdmin = response.data.userInfo.isAdmin;
           this.user = response.data.userInfo;
           }
-        
         }
-        this.categories = response.data.categories
+         this.categories = response.data.categories
       }, response => {
         console.log('error:' + response);
       })
-      console.log(this.$router.history.current.query.id)
-      
     },
     methods: {
       toggleRL() {
