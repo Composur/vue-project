@@ -17,11 +17,11 @@
         fixed="right"
         label="操作"
         width="100">
-        <template scope="scope">
+        <template slot-scope="props">
           <el-button type="text" size="small">
-            <router-link :to="{path: '/admin/category/edit', query:{id: scope.row._id}}">编辑</router-link>
+            <router-link :to="{path: '/admin/category/edit', query:{id: props.row._id}}">编辑</router-link>
           </el-button>
-          <el-button type="text" size="small" @click="deleteCategory(scope.row._id)">删除</el-button>
+          <el-button type="text" size="small" @click="deleteCategory(props.row._id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -42,7 +42,6 @@
     },
     methods: {
       gotIt(response) {
-        // console.log(response);
         this.tableData = response.data.categories;
       },
       deleteCategory(id) {
@@ -68,5 +67,3 @@
   }
 </script>
 
-<style lang="stylus">
-</style>

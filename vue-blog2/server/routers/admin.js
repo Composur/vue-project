@@ -20,16 +20,17 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.use(function (req, res, next) {
-    // console.log(req.userInfo);
-    if (req.userInfo == null || !req.userInfo.isAdmin) {
-        responseData.code = 1;
-        responseData.message = '无管理员权限'
-        res.json(responseData);
-        return;
-    }
-    next();
-})
+// 可做权限控制
+// router.use(function (req, res, next) {
+//     // console.log(req.userInfo);
+//     if (req.userInfo == null || !req.userInfo.isAdmin) {
+//         responseData.code = 1;
+//         responseData.message = '无管理员权限'
+//         res.json(responseData);
+//         return;
+//     }
+//     next();
+// })
 
 /*
  * 首页

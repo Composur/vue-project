@@ -80,8 +80,7 @@
         }
       });
       this.load = true;
-      this.$http.get('/view?contentid=' + this.$route.query['id']).then(response => {
-        console.log(response.data);
+      this.$http.get('/main/view?contentid=' + this.$route.query['id']).then(response => {
         this.load = false;
         this.content = response.data.content
         this.content.addTime = this.formatDate(this.content.addTime);
@@ -108,7 +107,7 @@
           return;
         }
         this.$http.withCredentials = true;
-        this.$http.post('/comment/post', {
+        this.$http.post('/main/comment/post', {
           contentid: this.$route.query['id'],
           content: this.editing_comment,
         }).then(response => {

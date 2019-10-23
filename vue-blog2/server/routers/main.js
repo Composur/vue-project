@@ -95,9 +95,12 @@ router.post('/comment/post', function (req, res, next) {
     // 查询当前文章的信息
     Content.findOne({
         _id: contentId,
-    }).populate(['category', 'user']).then(function (content) {
+    }).populate(['category']).then(function (content) { //关联表查询
         content.comments.push(postData);
-        return content.save();
+        // return content.save();
+        // console.log(content)
+        content =new Content(content)
+        return content.save()
     }).then(function (newContent) {
         responseData.message = '评论成功';
         responseData.data = newContent;

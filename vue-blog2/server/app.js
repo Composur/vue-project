@@ -66,7 +66,7 @@ app.use(function (req, res, next) {
  * */
 app.use('/admin', require('./routers/admin'));
 app.use('/api', require('./routers/api'));
-app.use('/', require('./routers/main'));
+app.use('/main', require('./routers/main'));
 
 
 // mongoose.connect("mongodb://localhost:27017/blog", function (err) {

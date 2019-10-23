@@ -35,6 +35,10 @@ module.exports = {
       '/admin':{
         target: 'http://localhost:8082', 
         changeOrigin: true, //开启代理
+      },
+      '/main':{
+        target: 'http://localhost:8082', 
+        changeOrigin: true, //开启代理
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

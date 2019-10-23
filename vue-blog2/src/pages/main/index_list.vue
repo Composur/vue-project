@@ -1,8 +1,8 @@
 <template>
   <div class="articleList">
 
-    <div class="article" v-for="content in data.contents" v-bind:title="message">
-      <!-- <div class="article-time">{{ content.addTime }}</div> -->
+    <div class="article"  v-for="content in data.contents" v-model="message" >
+
       <div class="article-title" v-bind:title="message">
         <router-link :to="{path:'/view', query: {id: content._id}}">{{ content.title }}</router-link>
       </div>
@@ -16,8 +16,8 @@
         </p>
         <p class="summary">{{ content.description }}</p>
         <router-link :to="{path:'/view', query: {id: content._id}}" class="more" >阅读全文</router-link>
-        <!-- <span class="article-time">{{content.addTime}}</span> -->
       </div>
+
     </div>
 
 
@@ -32,7 +32,6 @@
         <li v-else><span class="disable">下一页</span></li>
       </ul>
     </nav>
-    <div v-else>抱歉！这个版块暂时还没有内容。</div>
 
   </div>
 </template>
@@ -47,8 +46,8 @@
           limit: 0,
           pages: 0,
           page: 1,
-          message: '页面加载于 ' + new Date().toLocaleString()
-        }
+        },
+        message: '页面加载于 ' + new Date().toLocaleString()
       }
     },
     created() {
@@ -57,10 +56,9 @@
     methods: {
       getData() {
         let id = this.$route.query['id'] || '';
-        this.$http.get('/category?id=' + id + '&page=' + this.data.page).then(response => {
+        this.$http.get('/admin/content?id=' +id+ '&page=' + this.data.page).then(response => {
           response.data.contents.forEach((content) => {
             content.addTime = this.getDateDiff(new Date(this.formatDate(content.addTime)).getTime());
-            console.log(content.addTime)
           })
           this.data = response.data;
         }, response => {
@@ -174,13 +172,13 @@ getDateDiff(dateTimeStamp){
           -webkit-box-orient: vertical;
         .more
           display:inline-block;
-          width:150px;
-          height: 40px;
-          line-height: 40px;
+          width:80px;
+          height: 30px;
+          line-height: 30px;
           text-align: center;
           background: #42b983;
           border-radius: 3px;
-          font-size: 16px;
+          font-size: 14px;
           color: #fff;
           cursor: pointer;
         .article-time

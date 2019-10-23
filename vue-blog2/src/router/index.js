@@ -13,7 +13,7 @@ import content_index from '../pages/admin/content_index.vue'
 import content_add from '../pages/admin/content_add.vue'
 import content_edit from '../pages/admin/content_edit.vue'
 
-0
+
 Vue.use(Router)
 
 export default new Router({

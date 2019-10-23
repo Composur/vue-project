@@ -9,8 +9,11 @@
           </a>
         </div>
         <ul class="nav">
-          <li v-for="category in categories">
-            <router-link :to="{path:'/category', query:{id:category._id}}">{{ category.name }}</router-link>
+          <li v-for="(category,index) in categories" v-on:click.stop="navIndex(index,$event)" 
+            v-bind:class="{ active:index==current}"
+          >
+            <router-link :to="{path:'/category', query:{id:category._id}}"
+            >{{ category.name }}</router-link>
           </li>
         </ul>
       </div>
@@ -57,14 +60,18 @@
 
         <transition name="fade">
          <div class="info" v-show="showLogined">
-          <div class="title">你好, <span class="text-danger">{{ username }}</span></div>
+          <div class="title">你好<span class="text-danger" v-if="username">{{username }}</span></div>
           <p v-if="isAdmin">您是管理员,可以进入
             <el-button type="text">
               <router-link to="/admin">后台管理</router-link>
             </el-button>
           </p>
-          <p v-else>欢迎来到我的博客</p>
-          <p class="text-danger" id="logout" @click="logout">退出</p>
+          <p v-else>
+            <p>本博客为学习vue而使用</p>
+            <p> <a type="success" href="https://github.com/Composur/vue-project/tree/master/vue-blog2" target="_blank">点击获取前端(vue)+后台(node)源码</a></p>
+          </p>
+          <p class="text-danger" id="logout" @click="logout" v-if="username">退出</p>
+          <el-button type="primary" size="mini" class="more" id="logout" @click="logout" v-if="!username">点击登录</el-button>
         </div>
         </transition>
        
@@ -88,23 +95,28 @@
         warningInfo: '',
         isAdmin: false,
         categories: [],
-        title:'😍'
+        title:'😍',
+        current:0
       }
     },
     created() {
-      this.$http.get('').then(response => {
+      this.$http.get('/admin/category').then(response => {
         if (!response.data.code) { // 之前登陆过
           this.showLogin = !this.showLogin;
           this.showLogined = !this.showLogined;
+          if(response.data.userInfo){
           this.username = response.data.userInfo.username;
           this.isAdmin = response.data.userInfo.isAdmin;
           this.user = response.data.userInfo;
+          }
+        
         }
         this.categories = response.data.categories
-        // console.log(response);
       }, response => {
         console.log('error:' + response);
       })
+      console.log(this.$router.history.current.query.id)
+      
     },
     methods: {
       toggleRL() {
@@ -179,6 +191,9 @@
           console.log(response);
         })
       },
+      navIndex(index,e){
+        this.current=index
+      }
     }
   }
 </script>
@@ -235,6 +250,8 @@
             color: #34495e;
           &>a:hover
             border-bottom: 3px solid #42b983;
+        .active
+          border-bottom: 3px solid #42b983;
   .main
     display:flex;
     padding:20px;
@@ -298,4 +315,9 @@
         border: 1px solid #d5d5d5;
         #logout
           cursor:pointer;
+        p
+         margin-top 2px; 
+        .more
+          margin-top  2px;
+          background #42b983;
 </style>
