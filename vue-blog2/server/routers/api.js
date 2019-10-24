@@ -76,6 +76,7 @@ router.post('/user/login', function (req, res, next) {
         req.cookies.set('userInfo', JSON.stringify({
             _id: userInfo.id,
             username: userInfo.username,
+            isAdmin: userInfo.isAdmin,
         }), {httpOnly: false})
         res.json(responseData);
         return;

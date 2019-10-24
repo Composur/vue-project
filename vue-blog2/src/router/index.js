@@ -12,7 +12,7 @@ import category_edit from '../pages/admin/category_edit.vue'
 import content_index from '../pages/admin/content_index.vue'
 import content_add from '../pages/admin/content_add.vue'
 import content_edit from '../pages/admin/content_edit.vue'
-
+import Cookie from 'js-cookie'
 
 Vue.use(Router)
 export default new Router({
@@ -38,6 +38,14 @@ export default new Router({
     {
       path: '/admin',
       component: admin_index,
+      beforeEnter:(to, from, next)=> {
+      const {isAdmin} = JSON.parse(Cookie.get('userInfo'))
+        if(isAdmin){
+          next()
+        }else{
+          next(from)
+        }
+      },
       children: [
         {
           path: '/admin',
@@ -82,12 +90,6 @@ export default new Router({
       ]
     }
   ],
-  // scrollBehavior(to, from,savedPosition) {
-  //   return {
-  //     x: 0,
-  //     y: 0
-  //   }
-  // }
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition

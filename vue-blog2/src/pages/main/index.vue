@@ -173,7 +173,6 @@
             this.username = response.data.userInfo.username;
             this.user = response.data.userInfo;
           }
-          ;
         }, response => {
           console.log('error:' + response);
         })

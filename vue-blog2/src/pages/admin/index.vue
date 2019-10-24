@@ -36,21 +36,10 @@ export default {
   created() {
     this.$http.get("/admin").then(
       response => {
-        const {userInfo}=response.data
         if (response.data.code != 0) {
            this.$router.replace({
               path: "/*"
             });
-          return;
-        } else {
-          if(userInfo.isAdmin){
-            this.adminName = response.data.userInfo.username;
-            return;
-          }else{
-            this.$router.replace({
-              path: "/*"
-            });
-          }
         }
       },
       response => {
