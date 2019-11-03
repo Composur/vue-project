@@ -17,7 +17,7 @@
         fixed="right"
         label="操作"
         width="100">
-        <template slot-scope="props">
+        <template scope="props">
           <el-button type="text" size="small">
             <router-link :to="{path: '/admin/category/edit', query:{id: props.row._id}}">编辑</router-link>
           </el-button>

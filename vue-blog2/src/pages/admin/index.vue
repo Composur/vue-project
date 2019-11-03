@@ -28,6 +28,7 @@
 
 <script type="es6">
 export default {
+  // name:'leftNav',
   data() {
     return {
       adminName: ""
@@ -40,6 +41,9 @@ export default {
            this.$router.replace({
               path: "/*"
             });
+        }else{
+          const {userInfo} = response.data
+          this.adminName=userInfo.username
         }
       },
       response => {

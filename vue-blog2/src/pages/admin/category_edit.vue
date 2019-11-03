@@ -34,6 +34,7 @@
     },
     methods: {
       getData() {
+        console.log(this.$route.query)
         this.$http.get('/admin/category/edit?id=' + this.$route.query['id']).then(response => {
           this.category = response.data.category;
         }, response => {
