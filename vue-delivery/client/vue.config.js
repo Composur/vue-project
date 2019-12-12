@@ -23,5 +23,7 @@ module.exports={
     } else {
       // 为开发环境修改配置...
     }
-  }
+  },
+  // esLint
+  lintOnSave: process.env.NODE_ENV !== 'production'
 }

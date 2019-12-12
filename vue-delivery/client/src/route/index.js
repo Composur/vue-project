@@ -6,7 +6,13 @@ import Order from '../pages/Order'
 import User from '../pages/User'
 import Search from '../pages/Search'
 
+
+
+
+
+
 Vue.use(VueRouter)
+
 
 const Router = new VueRouter({
   routes:[
@@ -31,6 +37,10 @@ const Router = new VueRouter({
       component:Home
     },
   ]
+})
+
+Router.beforeEach((to,from,next)=>{
+  next()
 })
 
 export default Router

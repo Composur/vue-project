@@ -31,7 +31,7 @@
   export default {
     methods: {
       goTo (path) {
-        this.$router.replace(path)
+        this.$route.path === path ? null : this.$router.replace(path)
       },
     }
   }
