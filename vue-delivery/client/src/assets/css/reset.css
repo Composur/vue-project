@@ -95,4 +95,5 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  letter-spacing: 1px;
 }

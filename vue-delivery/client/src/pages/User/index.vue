@@ -4,19 +4,19 @@
     <section class="profile-number">
       <router-link :to="userInfo._id ? '/userinfo': '/login'" class="profile-link">
         <div class="profile_image">
-          <i class="iconfont icon-person"></i>
+          <i class="iconfont iconperson left-icon "></i>
         </div>
         <div class="user-info">
           <p class="user-info-top" v-if="!userInfo.phone">{{userInfo.name || '登录/注册'}}</p>
-          <p>
+               <p>
                 <span class="user-icon">
-                  <i class="iconfont icon-shouji icon-mobile"></i>
+                  <i class="iconfont iconshouji"></i>
                 </span>
             <span class="icon-mobile-number">{{userInfo.phone || '暂无绑定手机号'}}</span>
           </p>
         </div>
         <span class="arrow">
-          <i class="iconfont icon-jiantou1"></i>
+          <i class="iconfont iconback"></i>
         </span>
       </router-link>
     </section>
@@ -40,36 +40,36 @@
       <!-- 我的订单 -->
       <a href='javascript:' class="my_order">
             <span>
-              <i class="iconfont icon-order-s"></i>
+              <i class="iconfont iconemaxcitygerenxinxitubiaoji03 left-icon"></i>
             </span>
         <div class="my_order_div">
           <span>我的订单</span>
           <span class="my_order_icon">
-                <i class="iconfont icon-jiantou1"></i>
+                <i class="iconfont iconfanhui"></i>
               </span>
         </div>
       </a>
       <!-- 积分商城 -->
       <a href='javascript:' class="my_order">
             <span>
-              <i class="iconfont icon-jifen"></i>
+              <i class="iconfont iconjifen"></i>
             </span>
         <div class="my_order_div">
           <span>积分商城</span>
           <span class="my_order_icon">
-                <i class="iconfont icon-jiantou1"></i>
+                <i class="iconfont iconfanhui"></i>
               </span>
         </div>
       </a>
       <!-- 硅谷外卖会员卡 -->
       <a href="javascript:" class="my_order">
             <span>
-              <i class="iconfont icon-vip"></i>
+              <i class="iconfont iconhuiyuanqia"></i>
             </span>
         <div class="my_order_div">
-          <span>硅谷外卖会员卡</span>
+          <span>会员服务</span>
           <span class="my_order_icon">
-                <i class="iconfont icon-jiantou1"></i>
+                <i class="iconfont iconfanhui"></i>
               </span>
         </div>
       </a>
@@ -78,12 +78,12 @@
       <!-- 服务中心 -->
       <a href="javascript:" class="my_order">
             <span>
-              <i class="iconfont icon-fuwu"></i>
+              <i class="iconfont iconfuwuerji"></i>
             </span>
         <div class="my_order_div">
           <span>服务中心</span>
           <span class="my_order_icon">
-                <i class="iconfont icon-jiantou1"></i>
+                <i class="iconfont iconfanhui"></i>
               </span>
         </div>
       </a>
@@ -117,6 +117,8 @@ export default {
   .profile //我的
     width 100%
     overflow hidden
+    .left-icon
+      font-size 10px
     .header
       background-color #02a774
       position fixed
@@ -171,13 +173,13 @@ export default {
           border-radius 50%
           overflow hidden
           vertical-align top
-          .icon-person
+          .iconperson
             background #e4e4e4
             font-size 62px
         .user-info
           float left
           margin-top 8px
-          margin-left 15px
+          margin-left 20px
           p
             font-weight: 700
             font-size 18px
@@ -186,23 +188,24 @@ export default {
               padding-bottom 8px
             .user-icon
               display inline-block
-              margin-left -15px
+              // margin-left -15px
               margin-right 5px
               width 20px
               height 20px
-              .icon-mobile
-                font-size 30px
-                vertical-align text-top
+              .iconshouji
+                font-size 24px
+                vertical-align text-bottom
             .icon-mobile-number
               font-size 14px
               color #fff
+              margin-left  2px
         .arrow
           width 12px
           height 12px
           position absolute
           right 15px
           top 40%
-          .icon-jiantou1
+          .icon-iconfanhui
             color #fff
             font-size 5px
     .profile_info_data
@@ -222,13 +225,15 @@ export default {
             width 100%
             font-size 14px
             color #333
-            padding 15px 5px 10px
+            // padding 15px 5px 10px
+            margin-top 18px
             span
               display inline-block
-              font-size 30px
+              font-size 24px
               color #f90
               font-weight 700
               line-height 30px
+              padding 2px
           .info_data_bottom
             display inline-block
             font-size 14px
@@ -258,21 +263,21 @@ export default {
           width 20px
           height 20px
           >.iconfont
-            margin-left -10px
-            font-size 30px
-          .icon-order-s
+            margin-left -6px
+            font-size 20px
+          .iconemaxcitygerenxinxitubiaoji03
             color #02a774
-          .icon-jifen
+          .iconjifen
             color #ff5f3e
-          .icon-vip
+          .iconhuiyuanqia
             color #f90
-          .icon-fuwu
+          .iconfuwuerji
             color #02a774
         .my_order_div
           width 100%
           border-bottom 1px solid #f1f1f1
           padding 18px 10px 18px 0
-          font-size 16px
+          font-size 14px
           color #333
           display flex
           justify-content space-between

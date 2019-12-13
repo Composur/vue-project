@@ -1,4 +1,4 @@
-<!-- # 接口文档
+# 接口文档
 
 ## 目录：
 [1、根据经纬度获取位置详情](#1根据经纬度获取位置详情)<br/>
@@ -15,10 +15,10 @@
 ## 1、根据经纬度获取位置详情
      
 ### 请求URL：
-	http://localhost:3000/position/:geohash
+	http://localhost:8083/position/:geohash
 
 ### 示例：
-[http://localhost:3000/position/40.10038,116.36867](http://localhost:3000/position/40.10038,116.36867)
+[http://localhost:8083/position/40.10038,116.36867](http://localhost:8083/position/40.10038,116.36867)
 
 ### 请求方式：
 	GET
@@ -45,7 +45,7 @@
 ## 2、获取食品分类列表
 
 ### 请求URL：
-	http://localhost:3000/index_category
+	http://localhost:8083/index_category
 
 ### 请求方式：
 	GET
@@ -87,10 +87,10 @@
 ## 3、根据经纬度获取商铺列表
 
 ### 请求URL：
-	http://localhost:3000/shops
+	http://localhost:8083/shops
 
 ### 示例：
-[http://localhost:3000/shops?latitude=40.10038&longitude=116.36867](http://localhost:3000/shops?latitude=40.10038&longitude=116.36867)
+[http://localhost:8083/shops?latitude=40.10038&longitude=116.36867](http://localhost:8083/shops?latitude=40.10038&longitude=116.36867)
 
 ### 请求方式：
 	GET
@@ -185,8 +185,8 @@
 ## 4、根据经纬度和关键字搜索商铺列表
 
 ### 请求URL：
-	http://localhost:3000/search_shops
-	例子: http://localhost:3000/search_shops?keyword=test&geohash=40.10038,116.36867
+	http://localhost:8083/search_shops
+	例子: http://localhost:8083/search_shops?keyword=test&geohash=40.10038,116.36867
 	
 ### 请求方式：
     GET
@@ -371,7 +371,7 @@
 ## 5、获取一次性验证码
      
 ### 请求URL：
-	http://localhost:3000/captcha
+	http://localhost:8083/captcha
 
 ### 请求方式：
 	GET
@@ -394,7 +394,7 @@
 ## 6、用户名密码登陆
      
 ### 请求URL：
-	http://localhost:3000/login_pwd
+	http://localhost:8083/login_pwd
 
 ### 请求方式：
 	POST
@@ -425,10 +425,10 @@
 ## 7、发送短信验证码
      
 ### 请求URL：
-	http://localhost:3000/sendcode
+	http://localhost:8083/sendcode
 
 ### 示例：
-[http://localhost:3000/sendcode?phone=13716962779](http://localhost:3000/sendcode?phone=13716962779)
+[http://localhost:8083/sendcode?phone=13716962779](http://localhost:8083/sendcode?phone=13716962779)
 
 ### 请求方式：
 	GET
@@ -453,7 +453,7 @@
 ## 8、手机号验证码登陆
      
 ### 请求URL：
-	http://localhost:3000/login_sms
+	http://localhost:8083/login_sms
 
 ### 请求方式：
 	POST
@@ -482,7 +482,7 @@
 ### 9、根据会话获取用户信息
 
 #### 请求URL：
-	http://localhost:3000/userinfo
+	http://localhost:8083/userinfo
 
 #### 请求方式：
 	GET
@@ -506,10 +506,10 @@
 ### 10、用户登出
 
 #### 请求URL：
-	http://localhost:3000/logout
+	http://localhost:8083/logout
 
 #### 请求方式：
 	GET
 
 #### 返回示例：
-    {code: 0} -->
+    {code: 0}

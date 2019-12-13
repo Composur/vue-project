@@ -5,6 +5,7 @@ import Home from '../pages/Home'
 import Order from '../pages/Order'
 import User from '../pages/User'
 import Search from '../pages/Search'
+import Login from '../pages/Login/Login.vue'
 
 
 
@@ -18,23 +19,42 @@ const Router = new VueRouter({
   routes:[
     {
       path:'/home',
-      component:Home
+      component:Home,
+      meta:{
+        show:true
+      }
     },
     {
       path:'/order',
-      component:Order
+      component:Order,
+      meta:{
+        show:true
+      }
     },
     {
       path:'/user',
-      component:User
+      component:User,
+      meta:{
+        show:true
+      }
     },
     {
       path:'/search',
-      component:Search
+      component:Search,
+      meta:{
+        show:true
+      }
+    },
+    {
+      path:'/login',
+      component:Login
     },
     {
       path:'/',
-      component:Home
+      component:Home,
+      meta:{
+        show:true
+      }
     },
   ]
 })
