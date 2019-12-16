@@ -1,7 +1,7 @@
 <template>
   <section class="msite">
     <!--首页头部-->
-      <HeaderTop title="深圳市后海阿里中心" showIcon>
+      <HeaderTop :title=address showIcon>
          <span class="header_search" slot="left">
             <i class="iconfont iconicon_shaoma_xian"></i>
         </span>
@@ -134,12 +134,13 @@
 </template>
 <script>
 import Swiper from 'swiper'
+import {mapState,mapActions} from 'vuex'
 import 'swiper/css/swiper.min.css'
 
 import HeaderTop from '../../components/HeaderTop/HeaderTop'
 import ShopList from '../../components/ShopList/ShopList'
-
-
+import action from '../../store/action.js';
+import * as Type from '../../store/mutations_types.js'
 
 export default {
   mounted() {
@@ -158,6 +159,19 @@ export default {
         loadPrevNextAmount: 1,//设置在延迟加载图片时提前多少个slide。个数不可少于slidesPerView的数量
       },
     })
+    // 获取定位信息
+    // this.$store.dispatch(Type.GET_ADDRESS)
+    this[Type.GET_ADDRESS]()
+
+    this[Type.GET_SHOPS]()
+    this[Type.GET_SHOP_LIST]()
+  },
+  methods: {
+    ...mapActions([Type.GET_ADDRESS,Type.GET_SHOPS,Type.GET_SHOP_LIST])
+  },
+  computed: {
+    // 当映射的计算属性的名称与 state 的子节点名称相同时，我们也可以给 mapState 传一个字符串数组
+    ...mapState(['address','shopList','shops'])
   },
   components: {
     HeaderTop,

@@ -8,6 +8,8 @@
 <script>
 import './assets/css/reset.css'
 import Footer from './components/Footer'
+import action from './store/action.js'
+
 export default {
   name: 'app',
   components: {

@@ -171,12 +171,9 @@ import {reqShopList,reqAddress} from '../../api'
 export default {
   mounted: function () {
   this.$nextTick( async function () {
-    // Code that will run only after the
-    // entire view has been rendered
-    const geohash ='40.10038,116.36867'
-    const res = await reqAddress(geohash)
-  })
-}
+    
+    })
+  }
 }
 </script>
 

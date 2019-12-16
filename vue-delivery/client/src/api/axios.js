@@ -55,7 +55,7 @@ export default function (url, type = 'GET', data={}) {
     // axios 返回的promise 
     promise.then(res => {
       // 2.成功调用resolve
-      if(res.data&&res.data.status===0){
+      if(res.data&&res.data.code===0){
           resolve(res.data)
       }else{
         // message.error(res.data.msg)
