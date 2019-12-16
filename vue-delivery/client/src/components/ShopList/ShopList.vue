@@ -1,47 +1,46 @@
 <template>
   <div class="shop_container">
-    <ul class="shop_list">
+    <ul class="shop_list" v-for="(shops, index) in shopArr" :key="index">
       <li class="shop_li border-1px">
         <a>
           <div class="shop_left">
+            <!-- <img class="shop_img" :src="baseImgUrl+shops.image_path"> -->
             <img class="shop_img" src="./images/shop/1.jpg">
           </div>
           <div class="shop_right">
             <section class="shop_detail_header">
-              <h4 class="shop_title ellipsis">锄禾日当午，汗滴禾下土</h4>
+              <h4 class="shop_title ellipsis">{{shops.name}}</h4>
               <ul class="shop_detail_ul">
-                <li class="supports">保</li>
-                <li class="supports">准</li>
-                <li class="supports">票</li>
+                <li class="supports" v-for="(support, index) in shops.supports" :key="index">
+                  {{support.icon_name}}
+                </li>
               </ul>
             </section>
             <section class="shop_rating_order">
               <section class="shop_rating_order_left">
-                <div class="star star-24">
-                  <span class="star-item on"></span>
-                  <span class="star-item on"></span>
-                  <span class="star-item on"></span>
-                  <span class="star-item half"></span>
-                  <span class="star-item off"></span>
+                <Star :score="shops.rating" :size="24"/>
+                <div class="rating_section">
+                  {{shops.rating}}
                 </div>
-                <div class="rating_section">3.6</div>
-                <div class="order_section">月售106单</div>
+                <div class="order_section">
+                  月售{{shops.recent_order_num}}单
+                </div>
               </section>
               <section class="shop_rating_order_right">
-                <span class="delivery_style delivery_right">蜂鸟专送</span>
+                <span class="delivery_style delivery_right">{{shops.delivery_mode.text}}</span>
               </section>
             </section>
             <section class="shop_distance">
               <p class="shop_delivery_msg">
-                <span>¥20起送</span>
+                <span>¥{{shops.float_minimum_order_amount}}起送</span>
                 <span class="segmentation">/</span>
-                <span>配送费约¥5</span>
+                <span>配送费约¥{{shops.float_delivery_fee}}</span>
               </p>
             </section>
           </div>
         </a>
       </li>
-      <li class="shop_li border-1px">
+      <!-- <li class="shop_li border-1px">
         <a>
           <div class="shop_left">
             <img class="shop_img" src="./images/shop/2.jpg">
@@ -160,7 +159,7 @@
             </section>
           </div>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>
@@ -168,11 +167,24 @@
 
 <script>
 import {reqShopList,reqAddress} from '../../api'
+import Star from '../Star/Star'
 export default {
+  props:{
+    shopArr:Array,
+    score:String
+  },
+  data () {
+    return {
+      baseImgUrl: 'http://cangdu.org:8001/img/'
+    }
+  },
   mounted: function () {
   this.$nextTick( async function () {
     
     })
+  },
+  components:{
+    Star
   }
 }
 </script>

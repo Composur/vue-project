@@ -16,7 +16,17 @@
       <nav class="msite_nav">
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
+              <div class="swiper-slide" v-for="(item,index) in newShops" :key="index" >
+                <a href="javascript:" class="link_to_food" v-for="(key, index) in item" :key="index">
+                  <div class="food_container">
+                    <!-- <img src="./images/nav/1.jpg"> -->
+                   <img :src="baseImgURL+key.image_url">
+                  </div>
+                  <span>{{key.title}}</span>
+                </a>
+              </div>
+
+            <!-- <div class="swiper-slide">
               <a href="javascript:" class="link_to_food">
                 <div class="food_container">
                   <img src="./images/nav/1.jpg">
@@ -65,8 +75,9 @@
                 </div>
                 <span>土豪推荐</span>
               </a>
-            </div>
-            <div class="swiper-slide">
+            </div> -->
+
+            <!-- <div class="swiper-slide">
               <a href="javascript:" class="link_to_food">
                 <div class="food_container">
                   <img src="./images/nav/9.jpg">
@@ -115,7 +126,7 @@
                 </div>
                 <span>土豪推荐</span>
               </a>
-            </div>
+            </div> -->
           </div>
           <!-- Add Pagination -->
           <div class="swiper-pagination"></div>
@@ -127,7 +138,7 @@
           <i class="iconfont icon-xuanxiang"></i>
           <span class="shop_header_title">附近商家</span>
         </div>
-        <ShopList/>
+        <ShopList :shopArr=shopList />
       </div>
     </div>
   </section>
@@ -143,35 +154,61 @@ import action from '../../store/action.js';
 import * as Type from '../../store/mutations_types.js'
 
 export default {
+  data() {
+    return {
+      baseImgURL:'https://fuss10.elemecdn.com'
+    }
+  },
   mounted() {
-    new Swiper('.swiper-container',{
-      // autoplay: true,//可选选项，自动滑动
-      // direction: 'vertical', // 垂直切换选项
-      loop: true, // 循环模式选项
-      // effect : 'fade',
-      // 如果需要分页器
-      pagination: {
-        el: '.swiper-pagination',
-      },
-      // 延迟加载
-      lazy: {
-        loadPrevNext: true,
-        loadPrevNextAmount: 1,//设置在延迟加载图片时提前多少个slide。个数不可少于slidesPerView的数量
-      },
-    })
+   
     // 获取定位信息
     // this.$store.dispatch(Type.GET_ADDRESS)
     this[Type.GET_ADDRESS]()
-
     this[Type.GET_SHOPS]()
     this[Type.GET_SHOP_LIST]()
   },
   methods: {
-    ...mapActions([Type.GET_ADDRESS,Type.GET_SHOPS,Type.GET_SHOP_LIST])
+    ...mapActions([Type.GET_ADDRESS,Type.GET_SHOPS,Type.GET_SHOP_LIST]),
+    arrTrans(num, arr) {
+        const newArr = [];
+        while(arr.length > 0) {
+          newArr.push(arr.splice(0, num));
+        }
+        return newArr;
+      }
   },
   computed: {
     // 当映射的计算属性的名称与 state 的子节点名称相同时，我们也可以给 mapState 传一个字符串数组
-    ...mapState(['address','shopList','shops'])
+    ...mapState(['address','shopList','shops']),
+    newShops(){
+      return this.arrTrans(8,[...this.shops])
+    }
+  },
+  // 监视 shops 的数据 
+  watch: {
+    shops(value){
+      if(value){ // 这里的数据在界面异步更新之前到来，需要等到DOM渲染完成才能进行 new Swiper 的操作
+      //  不能再这里进行 Dom 操作
+      }
+      // 界面更新就 立即创建 Swiper 
+      this.$nextTick(()=>{
+        new Swiper('.swiper-container',{
+          // autoplay: true,//可选选项，自动滑动
+          // direction: 'vertical', // 垂直切换选项
+          loop: true, // 循环模式选项
+          // effect : 'fade',
+          // 如果需要分页器
+          pagination: {
+            el: '.swiper-pagination',
+          },
+          // 延迟加载
+          lazy: {
+            loadPrevNext: true,
+            loadPrevNextAmount: 1,//设置在延迟加载图片时提前多少个slide。个数不可少于slidesPerView的数量
+          },
+        })    
+      })
+    }
   },
   components: {
     HeaderTop,
