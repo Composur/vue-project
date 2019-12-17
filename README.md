@@ -1,10 +1,39 @@
-## vue-blog
-***
-+ 首页
-  + 登录
-  + 更新中...
-+ 使用 Vue.js 技术栈：vue-cli/vue2/axios/vue-router/vuex/es6/npm 为便捷开发,采用grid布局
-***
-文档说明
+## [vue博客](https://github.com/Composur/vue-project/tree/master/vue-blog2)
+  + [预览](https://blog.xutong.top/)
+## [vue 饿了么](https://github.com/Composur/vue-project/tree/master/vue-delivery) 
+  + [预览](https://blog.xutong.top/)
 
-__[前后端接口的实现](https://github.com/Composur/vue-blog/blob/master/vue-blog/doc/API.md)__
+
+## 目录结构
+
+### server/src
+|文件目录 |含义 |
+| ----- | ------  |
+| api | 请求接口相关  |
+| assets | 公用资源  |
+| mock | 模拟数据  |
+| components | 公共组件（非路由组件）  |
+| pages | 路由组件  |
+| store | vuex 相关  |
+| vue.config | 覆盖 vue-cli 配置文件  |
+| App.vue | 应用根模块  |
+| main.js| 应用入口  |
+
+
+### client 客户端，用户交互
+  + [预览链接](https://react.xutong.top/)
+
+#### 首页
+
+![home](./client/doc/img/home.jpg)
+![login](./client/doc/img/login.jpg)
+![order](./client/doc/img/order.jpg)
+![user](./client/doc/img/user.jpg)
+
+### server 服务端，为 client 提供API服务
+  + 包含 `api` 文档， `mock` 数据
+  + data 目录下为原始数据，可以导入到 `MongoDB`
+
+    ```
+      db.shops.insertMany([...])
+    ```
