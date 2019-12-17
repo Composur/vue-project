@@ -6,6 +6,9 @@
 #### 首页
 
 ![home](./client/doc/img/home.jpg)
+![login](./client/doc/img/login.jpg)
+![order](./client/doc/img/order.jpg)
+![user](./client/doc/img/user.jpg)
 
 ### server 服务端，为 client 提供API服务
   + 包含 `api` 文档， `mock` 数据
