@@ -15,119 +15,18 @@
       <!--首页导航-->
       <nav class="msite_nav">
         <div class="swiper-container">
-          <div class="swiper-wrapper">
+          <div class="swiper-wrapper" v-if="shops.length">
               <div class="swiper-slide" v-for="(item,index) in newShops" :key="index" >
                 <a href="javascript:" class="link_to_food" v-for="(key, index) in item" :key="index">
                   <div class="food_container">
-                    <!-- <img src="./images/nav/1.jpg"> -->
-                   <img :src="baseImgURL+key.image_url">
+                    <img src="./images/nav/1.jpg">
+                   <!-- <img :src="baseImgURL+key.image_url"> -->
                   </div>
                   <span>{{key.title}}</span>
                 </a>
               </div>
-
-            <!-- <div class="swiper-slide">
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/1.jpg">
-                </div>
-                <span>甜品饮品</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/2.jpg">
-                </div>
-                <span>商超便利</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/3.jpg">
-                </div>
-                <span>美食</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/4.jpg">
-                </div>
-                <span>简餐</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/5.jpg">
-                </div>
-                <span>新店特惠</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/6.jpg">
-                </div>
-                <span>准时达</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/7.jpg">
-                </div>
-                <span>预订早餐</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/8.jpg">
-                </div>
-                <span>土豪推荐</span>
-              </a>
-            </div> -->
-
-            <!-- <div class="swiper-slide">
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/9.jpg">
-                </div>
-                <span>甜品饮品</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/10.jpg">
-                </div>
-                <span>商超便利</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/11.jpg">
-                </div>
-                <span>美食</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/12.jpg">
-                </div>
-                <span>简餐</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/13.jpg">
-                </div>
-                <span>新店特惠</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/14.jpg">
-                </div>
-                <span>准时达</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/1.jpg">
-                </div>
-                <span>预订早餐</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/2.jpg">
-                </div>
-                <span>土豪推荐</span>
-              </a>
-            </div> -->
           </div>
+          <img src="./images/msite_back.svg" alt="w" v-else>
           <!-- Add Pagination -->
           <div class="swiper-pagination"></div>
         </div>
@@ -150,7 +49,6 @@ import 'swiper/css/swiper.min.css'
 
 import HeaderTop from '../../components/HeaderTop/HeaderTop'
 import ShopList from '../../components/ShopList/ShopList'
-import action from '../../store/action.js';
 import * as Type from '../../store/mutations_types.js'
 
 export default {
@@ -187,11 +85,10 @@ export default {
   // 监视 shops 的数据 
   watch: {
     shops(value){
-      if(value){ // 这里的数据在界面异步更新之前到来，需要等到DOM渲染完成才能进行 new Swiper 的操作
-      //  不能再这里进行 Dom 操作
-      }
-      // 界面更新就 立即创建 Swiper 
-      this.$nextTick(()=>{
+      // Vue 在更新 DOM 时是异步执行的
+      // 这里是在数据变化之后等待 Vue 完成更新 DOM
+      // 回调函数会在 DOM 更新后立即被调用
+      this.$nextTick(()=>{ // $nextTick() 会返回一个 Promise 对象
         new Swiper('.swiper-container',{
           // autoplay: true,//可选选项，自动滑动
           // direction: 'vertical', // 垂直切换选项

@@ -9,7 +9,7 @@
 import * as Type from './mutations_types'
 import jsonp from 'jsonp'
 // api 接口函数
-import {reqFoodList,reqShopList } from  '../api'
+import {reqFoodList,reqShopList,reqLogin,reqCode,reqLoginMsg} from  '../api'
 
 export default {
   async [Type.GET_ADDRESS]({commit,state}){
@@ -31,7 +31,20 @@ export default {
       const res = await reqShopList()
        commit(Type.GET_SHOP_LIST,res.data)
    },
-
+  //  短信验证码
+  async [Type.GET_CODE]({commit}){
+      const res = await reqCode()
+  },
+  //  短信登录
+  async [Type.GET_LOGIN_MSG]({commit},params){
+      const res = await reqLoginMsg()
+      commit(Type.GET_LOGIN_MSG,res.data)
+  },
+  //  密码登录
+  async [Type.GET_LOGIN]({commit},params){
+      const res = await reqLogin(params)
+       commit(Type.GET_LOGIN,res.data)
+  },
 } 
 
 const getLatitude=()=>{

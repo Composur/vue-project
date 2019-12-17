@@ -24,5 +24,14 @@ export default {
     state.shopList = payload
 
   },
+  [Type.GET_LOGIN_MSG](state, payload) {
 
+    state.loginUserInfo = payload
+
+  },
+  [Type.GET_LOGIN](state, payload) {
+
+    state.loginUserInfo = payload
+
+  },
 }

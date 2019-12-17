@@ -55,11 +55,10 @@ router.post('/login_pwd', function (req, res) {
 router.get('/captcha', function (req, res) {
   var captcha = svgCaptcha.create({
     ignoreChars: '0o1l',
-    noise: 2,
+    noise: 2,//干扰线
     color: true
   });
   req.session.captcha = captcha.text.toLowerCase();
-  console.log(req.session.captcha)
   /*res.type('svg');
   res.status(200).send(captcha.data);*/
   res.type('svg');

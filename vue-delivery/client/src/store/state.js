@@ -3,5 +3,6 @@ export default {
     longitude: 116.36876,
     address:'定位中...',
     shopList:[],//商品列表
-    shops:[],//商铺
+    shops:[],//商铺,
+    loginUserInfo:{}
 }

@@ -24,5 +24,9 @@ computed: {
     address:state => state.address
   }),
 ```
+### vue 模板上的数据来源
++ data
++ props
++ computed
 
 
