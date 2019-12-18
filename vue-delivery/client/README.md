@@ -1,4 +1,27 @@
+
 # client
+[![GitHub open issues](https://img.shields.io/github/issues/undefined/client.svg?maxAge=2592000)](https://github.com/undefined/client/issues)
+[![Npm version](https://img.shields.io/npm/v/client.svg?maxAge=2592000)](https://www.npmjs.com/package/client)
+
+## Usage
+```HTML
+<Client :text="hello"></Client>
+```
+```javascript
+import { Client } from 'client'
+
+export default {
+  components: {
+    Client
+  }
+}
+```
+## API
+
+## Installation
+```
+npm install client
+```
 
 ## Project setup
 ```
@@ -35,3 +58,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 | vue.config | 覆盖 vue-cli 配置文件  |
 | App.vue | 应用根模块  |
 | main.js| 应用入口  |
+
+### Update the API section of README.md with generated documentation
+```
+yarn run doc:build
+```
