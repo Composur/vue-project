@@ -91,40 +91,45 @@
 
     <section class="profile_my_order border-1px">
       <mt-button type="danger" style="width: 100%" v-if="doLoginUserInfo._id" @click="logout">退出登陆</mt-button>
-      <!-- <button type="danger" style="width: 100%" v-if="doLoginUserInfo._id" @click="logout">退出登陆</!--> -->
+      <!-- <button type="danger" style="width: 100%" v-if="doLoginUserInfo._id" @click="logout">退出登陆</!-->
     </section>
   </section>
 </template>
 <script>
-import Vue from 'vue'
-import {Button} from 'mint-ui'
 import HeaderTop from '../../components/HeaderTop/HeaderTop'
-import { mapActions,mapState, mapGetters } from 'vuex' 
+import { mapActions, mapGetters,mapState } from 'vuex' 
 import {GET_OUT} from '../../store/mutations_types.js'
-
-Vue.use(Button)
-
+import {MessageBox,Toast} from 'mint-ui'
 export default {
   computed: {
-    ...mapGetters(['doLoginUserInfo','loginUserInfo'])
+    ...mapGetters(['doLoginUserInfo','loginUserInfo']),
+    ...mapState(['loginUserInfo'])
   },
   methods: {
     ...mapActions([GET_OUT]),
     logout(){
-      this[GET_OUT]()
+      MessageBox({
+        title: '提示',
+        message: '确定执行此操作?',
+        showCancelButton: true
+      }).then( action =>{
+        if(action === 'confirm'){
+          this[GET_OUT]()
+        }
+      })
     }
   },
-  // watch: {
-  //   loginUserInfo(data){
-  //     this.$nextTick(()=>{
-  //       if(data.code===0){
-  //         alert('退出成功')
-  //       }
-  //     })
-  //   }
-  // },
+  watch: {
+    loginUserInfo(data){
+      this.$nextTick(()=>{
+        if(data.code===0){
+          Toast('退出成功')
+        }
+      })
+    }
+  },
   components: {
-    HeaderTop
+    HeaderTop,
   }
 }
 </script>

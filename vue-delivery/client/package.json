@@ -1,22 +1,12 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": false,
+  "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve ./example/main.js --open",
-    "build": "vue-cli-service build --name client --entry ./src/index.js --target lib",
-    "lint": "vue-cli-service lint",
-    "doc:build": "npx vuedoc.md --section API --output ./README.md ./src/components/Client.vue",
-    "prepublishOnly": "npm run lint && npm run build && npm run doc:build"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
-  "main": "dist/client.umd.js",
-  "module": "dist/client.common.min.js",
-  "files": [
-    "dist/*.css",
-    "dist/*.map",
-    "dist/*.js",
-    "src/*"
-  ],
   "dependencies": {
     "axios": "^0.19.0",
     "core-js": "^3.4.3",
@@ -30,7 +20,6 @@
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
-    "@vuedoc/md": "^1.5.0",
     "babel-eslint": "^10.0.3",
     "babel-plugin-component": "^1.1.1",
     "eslint": "^5.16.0",
@@ -57,9 +46,5 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ],
-  "keywords": [
-    "vue",
-    "component"
   ]
 }

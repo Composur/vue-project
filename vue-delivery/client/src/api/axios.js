@@ -3,6 +3,7 @@
  */
 // import store from 'store'
 import config from '../config'
+
 import axios from 'axios'
 
 // 把 Token 存在localStroage,每次请求在 Axios 请求头上进行携带
@@ -38,7 +39,7 @@ export default function (url, type = 'GET', data={}) {
   let promise;
   url=config.baseURl+url
   // 返回一个promise，统一处理错误
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     // 1.执行异步请求
     if (type.toLocaleLowerCase() === 'get') {
       let paramStr = ''

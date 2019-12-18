@@ -13,4 +13,4 @@ export const GET_LOGIN_MSG = 'get_login_msg' //短信登录
 
 export const GET_USER_INFO = 'get_user_info' //短信登录
 
-export const GET_OUT = 'get_out' //短信登录
+export const GET_OUT = 'get_out' //退出登录

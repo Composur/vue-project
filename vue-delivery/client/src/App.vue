@@ -9,18 +9,8 @@
 import './assets/css/reset.css'
 import Footer from './components/Footer'
 
-import {mapActions} from 'vuex'
-import {GET_USER_INFO} from './store/mutations_types.js'
-
 export default {
   name: 'app',
-  mounted() {
-    // 持久登录
-    this[GET_USER_INFO]()
-  },
-  methods: {
-    ...mapActions([GET_USER_INFO])
-  },
   components: {
     Footer
   }

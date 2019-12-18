@@ -141,7 +141,7 @@ export default {
       this.msgLogin = !this.msgLogin;
     },
     // 验证码
-    getCode(e) {
+    getCode() {
       if(this.msgLogin){
         // 倒计时 短信验证码
         if (!this.countdownNum) {

@@ -52,7 +52,6 @@
 
 
 <script>
-import {reqShopList,reqAddress} from '../../api'
 import Star from '../Star/Star'
 export default {
   props:{

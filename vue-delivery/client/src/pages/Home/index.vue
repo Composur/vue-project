@@ -84,7 +84,7 @@ export default {
   },
   // 监视 shops 的数据 
   watch: {
-    shops(value){
+    shops(){
       // Vue 在更新 DOM 时是异步执行的
       // 这里是在数据变化之后等待 Vue 完成更新 DOM
       // 回调函数会在 DOM 更新后立即被调用

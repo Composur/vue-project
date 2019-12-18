@@ -1,4 +1,5 @@
 //  对默认的配置进行覆盖
+const {VueLoaderPlugin} = require('vue-loader') 
 
 module.exports={
   devServer: {
@@ -19,12 +20,10 @@ module.exports={
     }
   },
   // 该对象将会被 webpack-merge 合并入最终的 webpack 配置。
-  configureWebpack: config => {
-    if (process.env.NODE_ENV === 'production') {
-      // 为生产环境修改配置...
-    } else {
-      // 为开发环境修改配置...
-    }
+  configureWebpack: {
+    // plugins: [
+    //   // new VueLoaderPlugin()
+    // ]
   },
   // esLint
   lintOnSave: process.env.NODE_ENV !== 'production'
