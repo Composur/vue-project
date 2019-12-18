@@ -17,7 +17,7 @@ router.post('/login_pwd', function (req, res) {
   const name = req.body.name
   const pwd = md5(req.body.pwd)
   const captcha = req.body.captcha.toLowerCase()
-  console.log('/login_pwd', name, pwd, captcha, req.session)
+  // console.log('/login_pwd', name, pwd, captcha, req.session.captcha)
 
   // 可以对用户名/密码格式进行检查, 如果非法, 返回提示信息
   if(captcha!==req.session.captcha) {
@@ -28,7 +28,7 @@ router.post('/login_pwd', function (req, res) {
 
   UserModel.findOne({name}, function (err, user) {
     if (user) {
-      console.log('findUser', user)
+      // console.log('findUser', user)
       if (user.pwd !== pwd) {
         res.send({code: 1, msg: '用户名或密码不正确!'})
       } else {
@@ -55,7 +55,7 @@ router.post('/login_pwd', function (req, res) {
 router.get('/captcha', function (req, res) {
   var captcha = svgCaptcha.create({
     ignoreChars: '0o1l',
-    noise: 2,//干扰线
+    noise: 0,//干扰线
     color: true
   });
   req.session.captcha = captcha.text.toLowerCase();
@@ -124,7 +124,7 @@ router.post('/login_sms', function (req, res, next) {
  */
 router.get('/userinfo', function (req, res) {
   // 取出userid
-  const userid = req.session.userid
+  const userid = req.session.userid  
   // 查询
   UserModel.findOne({_id: userid}, _filter, function (err, user) {
     // 如果没有, 返回错误提示

@@ -2,17 +2,17 @@
   <section class="profile">
     <HeaderTop title="我的"/>
     <section class="profile-number">
-      <router-link :to="userInfo._id ? '/userinfo': '/login'" class="profile-link">
+      <router-link :to="doLoginUserInfo._id ? '/user' : '/login'" class="profile-link">
         <div class="profile_image">
           <i class="iconfont iconperson left-icon "></i>
         </div>
         <div class="user-info">
-          <p class="user-info-top" v-if="!userInfo.phone">{{userInfo.name || '登录/注册'}}</p>
+          <p class="user-info-top" v-if="!doLoginUserInfo.phone">{{doLoginUserInfo.name || '登录/注册'}}</p>
                <p>
                 <span class="user-icon">
                   <i class="iconfont iconshouji"></i>
                 </span>
-            <span class="icon-mobile-number">{{userInfo.phone || '暂无绑定手机号'}}</span>
+            <span class="icon-mobile-number">{{doLoginUserInfo.phone || '暂无绑定手机号'}}</span>
           </p>
         </div>
         <span class="arrow">
@@ -90,23 +90,42 @@
     </section>
 
     <section class="profile_my_order border-1px">
-      <mt-button type="danger" style="width: 100%" v-if="userInfo._id" @click="logout">退出登陆</mt-button>
+      <mt-button type="danger" style="width: 100%" v-if="doLoginUserInfo._id" @click="logout">退出登陆</mt-button>
+      <!-- <button type="danger" style="width: 100%" v-if="doLoginUserInfo._id" @click="logout">退出登陆</!--> -->
     </section>
   </section>
 </template>
 <script>
+import Vue from 'vue'
+import {Button} from 'mint-ui'
 import HeaderTop from '../../components/HeaderTop/HeaderTop'
+import { mapActions,mapState, mapGetters } from 'vuex' 
+import {GET_OUT} from '../../store/mutations_types.js'
+
+Vue.use(Button)
+
 export default {
-  data() {
-    return {
-      userInfo:{
-        
-      }
+  computed: {
+    ...mapGetters(['doLoginUserInfo','loginUserInfo'])
+  },
+  methods: {
+    ...mapActions([GET_OUT]),
+    logout(){
+      this[GET_OUT]()
     }
   },
-   components: {
-      HeaderTop
-    }
+  // watch: {
+  //   loginUserInfo(data){
+  //     this.$nextTick(()=>{
+  //       if(data.code===0){
+  //         alert('退出成功')
+  //       }
+  //     })
+  //   }
+  // },
+  components: {
+    HeaderTop
+  }
 }
 </script>
 

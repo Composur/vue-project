@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret: '12345',
-  cookie: {maxAge: 1000*60*60*24 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+  cookie: {maxAge: 1000*60*60*24 },
   resave: false,
   saveUninitialized: true,
 }));

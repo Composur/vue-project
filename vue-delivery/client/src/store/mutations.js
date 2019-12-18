@@ -7,31 +7,32 @@
 
 import * as Type from './mutations_types.js'
 
+// store 中存储的数据
+
 export default {
   // 我们可以使用 ES2015 风格的 计算属性 命名功能来使用一个常量作为函数名
   [Type.GET_ADDRESS](state, address) {
-
     state.address = address 
-
   },
   [Type.GET_SHOPS](state, payload) {
-    
     state.shops = payload
-
   },
   [Type.GET_SHOP_LIST](state, payload) {
-
     state.shopList = payload
-
   },
   [Type.GET_LOGIN_MSG](state, payload) {
-
     state.loginUserInfo = payload
-
   },
   [Type.GET_LOGIN](state, payload) {
-
     state.loginUserInfo = payload
-
+  },
+  [Type.GET_CODE](state, payload) {
+    state.msgCcode = payload
+  },
+  [Type.GET_USER_INFO](state, payload) {
+    state.loginUserInfo = payload
+  },
+  [Type.GET_OUT](state, payload) {
+    state.loginUserInfo = payload
   },
 }

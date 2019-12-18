@@ -9,7 +9,7 @@
 import * as Type from './mutations_types'
 import jsonp from 'jsonp'
 // api 接口函数
-import {reqFoodList,reqShopList,reqLogin,reqCode,reqLoginMsg} from  '../api'
+import {reqFoodList,reqShopList,reqLogin,reqCode,reqLoginMsg,reqUserInfo,reqLoginOut} from  '../api'
 
 export default {
   async [Type.GET_ADDRESS]({commit,state}){
@@ -34,16 +34,28 @@ export default {
   //  短信验证码
   async [Type.GET_CODE]({commit}){
       const res = await reqCode()
+      commit(Type.GET_CODE,res)
   },
   //  短信登录
   async [Type.GET_LOGIN_MSG]({commit},params){
-      const res = await reqLoginMsg()
-      commit(Type.GET_LOGIN_MSG,res.data)
+      const res = await reqLoginMsg(params)
+      commit(Type.GET_LOGIN_MSG,res)
   },
   //  密码登录
   async [Type.GET_LOGIN]({commit},params){
       const res = await reqLogin(params)
-       commit(Type.GET_LOGIN,res.data)
+      
+      commit(Type.GET_LOGIN,res)
+  },
+  //  持久登录 获取用户信息
+  async [Type.GET_USER_INFO]({commit}){
+      const res = await reqUserInfo()
+      commit(Type.GET_USER_INFO,res)
+  },
+  //  退出登录
+  async [Type.GET_OUT]({commit}){
+      const res = await reqLoginOut()
+      commit(Type.GET_OUT,res)
   },
 } 
 

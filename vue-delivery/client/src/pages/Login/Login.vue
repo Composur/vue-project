@@ -2,7 +2,7 @@
   <section class="loginContainer">
     <div class="loginInner">
       <div class="login_header">
-        <h2 class="login_logo">特好吃外卖</h2>
+        <!-- <h2 class="login_logo">特好吃外卖</h2> -->
         <div class="login_header_title">
           <a href="javascript:;" :class="{on:msgLogin}" @click="changeLoginMode">短信登录</a>
           <a href="javascript:;" :class="{on:!msgLogin}" @click="changeLoginMode">密码登录</a>
@@ -50,7 +50,7 @@
               <section class="login_message">
                 <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
                 <!-- <img class="get_verification" src="./images/captcha.svg" alt="captcha" @click.prevent="getCode"> -->
-                <img class="get_verification" :src="captchaHref" alt="captcha" @click.prevent="getCode">
+                <img class="get_verification" :src="captchaHref" alt="captcha" ref="captcha" @click.prevent="getCode">
               </section>
             </section>
           </div>
@@ -67,7 +67,7 @@
   </section>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState ,mapGetters } from 'vuex'
 import {GET_LOGIN,GET_CODE, GET_LOGIN_MSG} from '../../store/mutations_types.js'
 import config from '../../config'
 import Alert from '../../components/AlertTip/AlertTip'
@@ -101,6 +101,7 @@ export default {
         };
         this[GET_LOGIN_MSG](params)
       } else {
+        // 点击登录后 刷新验证码
         const params = {
           name:this.username,
           pwd:this.pwd,
@@ -130,8 +131,7 @@ export default {
       }
       // let {alertText,showWaringBorder } = this
       if(text){
-        this.alertText = text
-        this.showWaringBorder = true
+        this.showTip(text)
         return false
       }else {
         return true
@@ -156,7 +156,7 @@ export default {
         this[GET_CODE]({phone:this.phoneNum})
       }else{
         // 密码登录的-图形验证码
-        e.target.src=this.captchaHref+'?t='+new Date()
+        this.$refs.captcha.src=this.captchaHref+'?t='+new Date()
       }
     },
     passwordSwitch() {
@@ -165,6 +165,30 @@ export default {
     closeTip(){
       // this.alertText = text
       this.showWaringBorder = !this.showWaringBorder
+    },
+    showTip(msg){
+      this.showWaringBorder=true
+      this.alertText=msg
+    }
+  },
+  watch: {
+    // 用户信息
+    loginUserInfo(value){
+      this.$nextTick(()=>{
+         if(value.code){
+          this.showTip(value.msg)
+          this.getCode()
+          return
+        }
+        // 登录成功后的逻辑
+        this.$router.replace('/user')
+      })
+    },
+    msgCode(){
+      this.$nextTick(()=>{
+        // 短信登录
+        // 
+      })
     }
   },
   computed: {
@@ -172,7 +196,10 @@ export default {
     pass() {
       // return /^[1]([3-9])[0-9]{9}$/.test(this.phoneNum)
       return /^1/.test(this.phoneNum);
-    }
+    },
+    // store 上的用户信息
+    ...mapState(['loginUserInfo','msgCode']),
+    ...mapGetters(['doLoginUserInfo'])
   },
   components:{
     Alert,

@@ -4,5 +4,5 @@ export default {
     address:'定位中...',
     shopList:[],//商品列表
     shops:[],//商铺,
-    loginUserInfo:{}
+    loginUserInfo:{},
 }
