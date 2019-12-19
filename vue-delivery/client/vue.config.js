@@ -1,5 +1,12 @@
-//  对默认的配置进行覆盖
-const {VueLoaderPlugin} = require('vue-loader') 
+/**
+ * @description 对默认的配置进行覆盖
+ */  
+const path = require('path');
+
+const resolve = (dir)=>{
+  return path.join(__dirname, dir);
+}
+
 
 module.exports={
   devServer: {
@@ -20,10 +27,12 @@ module.exports={
     }
   },
   // 该对象将会被 webpack-merge 合并入最终的 webpack 配置。
-  configureWebpack: {
-    // plugins: [
-    //   // new VueLoaderPlugin()
-    // ]
+  chainWebpack: (config) => {
+    config.resolve.alias
+      .set('@', resolve('src'))
+      .set('@assets',resolve('src/assets'))
+      .set('@components',resolve('src/components'))
+      .set('@pages',resolve('src/pages'))
   },
   // esLint
   lintOnSave: process.env.NODE_ENV !== 'production'

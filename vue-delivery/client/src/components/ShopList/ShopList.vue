@@ -1,7 +1,7 @@
 <template>
   <div class="shop_container">
     <ul class="shop_list" v-if="shopArr.length">
-      <li class="shop_li border-1px"  v-for="(shops, index) in shopArr" :key="index">
+      <li class="shop_li border-1px"  v-for="(shops, index) in shopArr" :key="index" @click="goDetail">
         <a>
           <div class="shop_left">
             <!-- <img class="shop_img" :src="baseImgUrl+shops.image_path"> -->
@@ -67,6 +67,11 @@ export default {
   this.$nextTick( async function () {
     
     })
+  },
+  methods: {
+    goDetail(){
+      this.$router.push('/detail')
+    }
   },
   components:{
     Star

@@ -91,7 +91,6 @@
 
     <section class="profile_my_order border-1px">
       <mt-button type="danger" style="width: 100%" v-if="doLoginUserInfo._id" @click="logout">退出登陆</mt-button>
-      <!-- <button type="danger" style="width: 100%" v-if="doLoginUserInfo._id" @click="logout">退出登陆</!-->
     </section>
   </section>
 </template>

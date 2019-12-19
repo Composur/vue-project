@@ -7,9 +7,10 @@ import User from '../pages/User'
 import Search from '../pages/Search'
 import Login from '../pages/Login/Login.vue'
 
-
-
-
+import Detail from '@pages/Detail'
+import Appraise from '@pages/Detail/Appraise'
+import Business from '@pages/Detail/Business'
+import OrderFood from '@pages/Detail/OrderFood'
 
 
 Vue.use(VueRouter)
@@ -48,6 +49,28 @@ const Router = new VueRouter({
     {
       path:'/login',
       component:Login
+    },
+    {
+      path:'/detail',
+      component:Detail,
+      children:[
+        {
+          path:'/',
+          redirect:'orderFood'
+        },
+        {
+          path:'orderFood',
+          component:OrderFood,
+        },
+        {
+          path:'appraise',
+          component:Appraise,
+        },
+        {
+          path:'business',
+          component:Business,
+        },
+      ]
     },
     {
       path:'/',
