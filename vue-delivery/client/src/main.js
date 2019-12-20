@@ -3,8 +3,10 @@ import App from './App.vue'
 import router from './route'
 import store from './store'
 
-import {Button} from 'mint-ui'
+// 加载模拟数据
+import './mock/mockServer.js'
 
+import {Button} from 'mint-ui'
 // 注册成全局的组件
 Vue.component(Button.name,Button)
 

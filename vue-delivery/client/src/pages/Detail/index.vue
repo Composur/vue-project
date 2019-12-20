@@ -19,6 +19,8 @@
 </template>
 <script>
 import Vue from 'vue'
+import {mapActions,mapState} from 'vuex'
+import {GET_FOOD_LISTS} from '../../store/mutations_types.js'
 import DetailHead from '@components/DetailHead/DetailHead'
 import Appraise from './Appraise'
 import Business from './Business'
@@ -32,8 +34,19 @@ Vue.component(TabContainerItem.name, TabContainerItem);
 export default {
   data() {
     return {
-      
+
     }
+  },
+  mounted() {
+    // fetch('/goods',(val)=>{
+    //   console.log(val,'123')
+    // })
+    this[GET_FOOD_LISTS]()
+  },
+  methods: {
+    ...mapActions([GET_FOOD_LISTS])
+  },
+  computed: {
   },
   components:{
     DetailHead,

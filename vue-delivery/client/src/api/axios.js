@@ -37,7 +37,11 @@ axios.interceptors.response.use(
 export default function (url, type = 'GET', data={}) {
   // axios.defaults.headers.common['Authorization'] = store.get('token')
   let promise;
-  url=config.baseURl+url
+
+  // mock 的 URL 不走代理
+  if(!['/goods','/ratings','/foodInfo'].includes(url)){
+    url=config.baseURl+url
+  }
   // 返回一个promise，统一处理错误
   return new Promise((resolve) => {
     // 1.执行异步请求
@@ -49,7 +53,11 @@ export default function (url, type = 'GET', data={}) {
       if(paramStr) {
           paramStr = paramStr.substring(0, paramStr.length-1)
         }
-      promise = axios.get(url+'?'+paramStr+'&t='+new Date())
+        if(!['/goods','/ratings','/foodInfo'].includes(url)){
+          promise = axios.get(url+'?'+paramStr+'&t='+new Date())
+        }else{
+          promise = axios.get(url)
+        }
     } else {
       promise = axios.post(url, data)
     }

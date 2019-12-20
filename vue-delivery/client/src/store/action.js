@@ -9,7 +9,9 @@
 import * as Type from './mutations_types'
 import jsonp from 'jsonp'
 // api 接口函数
-import {reqFoodList,reqShopList,reqLogin,reqCode,reqLoginMsg,reqUserInfo,reqLoginOut} from  '../api'
+import {reqFoodList,reqShopList,reqLogin,reqCode,reqLoginMsg,reqUserInfo,
+  reqFoodLists,reqFoodInfo,reqRatings,
+  reqLoginOut} from  '../api'
 
 export default {
   async [Type.GET_ADDRESS]({commit,state}){
@@ -56,6 +58,21 @@ export default {
   async [Type.GET_OUT]({commit}){
       const res = await reqLoginOut()
       commit(Type.GET_OUT,res)
+  },
+  //  商品信息
+  async [Type.GET_FOOD_INFO]({commit}){
+      const res = await reqFoodInfo()
+      commit(Type.GET_FOOD_INFO,res.data)
+  },
+  //  商品列表
+  async [Type.GET_FOOD_LISTS]({commit}){
+      const res = await reqFoodLists()
+      commit(Type.GET_FOOD_LISTS,res.data)
+  },
+  //  评论列表
+  async [Type.GET_RATINGS]({commit}){
+      const res = await reqRatings()
+      commit(Type.GET_RATINGS,res.data)
   },
 } 
 

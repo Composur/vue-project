@@ -15,7 +15,7 @@ export const reqFoodList = data => request('/index_category','GET',data)
 export const reqShopList = data => request('/shops','GET',data)
 
 // 根据经纬度和关键字搜索商铺列表
-export const reqSearchShop = data => ajax(BASE_URL+'/search_shops', 'GET',data)
+export const reqSearchShop = data => request('/search_shops', 'GET',data)
 
 // 用户名密码登陆
 export const reqLogin = data=> request('/login_pwd','POST',data)
@@ -31,3 +31,11 @@ export const reqUserInfo = () => request('/userinfo')
 
 // 用户登出
 export const reqLoginOut = ()=> request('/logout')
+
+
+/**
+ * @description 商品详情页相关 
+ */  
+export const reqFoodLists = ()=> request('/goods') // 食物列表
+export const reqRatings = ()=> request('/ratings') // 评论列表
+export const reqFoodInfo = ()=> request('/foodInfo') // 食物信息

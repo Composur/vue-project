@@ -35,4 +35,13 @@ export default {
   [Type.GET_OUT](state, payload) {
     state.loginUserInfo = payload
   },
+  [Type.GET_FOOD_INFO](state, payload) {
+    state.foodInfo = payload
+  },
+  [Type.GET_RATINGS](state, payload) {
+    state.foodRatings = payload
+  },
+  [Type.GET_FOOD_LISTS](state, payload) {
+    state.foodLists = payload
+  },
 }
