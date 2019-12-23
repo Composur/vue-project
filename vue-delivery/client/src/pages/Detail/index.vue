@@ -20,17 +20,17 @@
 <script>
 import Vue from 'vue'
 import {mapActions,mapState} from 'vuex'
-import {GET_FOOD_LISTS} from '../../store/mutations_types.js'
+import {GET_FOOD_INFO} from '../../store/mutations_types.js'
 import DetailHead from '@components/DetailHead/DetailHead'
 import Appraise from './Appraise'
 import Business from './Business'
 import OrderFood from './OrderFood'
-import { Navbar, TabItem , TabContainer, TabContainerItem} from 'mint-ui';
+// import { Navbar, TabItem , TabContainer, TabContainerItem} from 'mint-ui';
 
-Vue.component(Navbar.name, Navbar);
-Vue.component(TabItem.name, TabItem);
-Vue.component(TabContainer.name, TabContainer);
-Vue.component(TabContainerItem.name, TabContainerItem);
+// Vue.component(Navbar.name, Navbar);
+// Vue.component(TabItem.name, TabItem);
+// Vue.component(TabContainer.name, TabContainer);
+// Vue.component(TabContainerItem.name, TabContainerItem);
 export default {
   data() {
     return {
@@ -38,13 +38,10 @@ export default {
     }
   },
   mounted() {
-    // fetch('/goods',(val)=>{
-    //   console.log(val,'123')
-    // })
-    this[GET_FOOD_LISTS]()
+    this[GET_FOOD_INFO]()
   },
   methods: {
-    ...mapActions([GET_FOOD_LISTS])
+    ...mapActions([GET_FOOD_INFO])
   },
   computed: {
   },

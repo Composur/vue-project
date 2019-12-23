@@ -5,6 +5,7 @@ import store from './store'
 
 // 加载模拟数据
 import './mock/mockServer.js'
+// ali iconFont
 
 import {Button} from 'mint-ui'
 // 注册成全局的组件
