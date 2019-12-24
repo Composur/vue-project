@@ -19,7 +19,7 @@ export default {
 
 
 <style lang="stylus" rel="stylesheet/stylus">
-@import "//at.alicdn.com/t/font_1560118_9751atjyzg7.css"
+@import "//at.alicdn.com/t/font_1560118_woiczy2ulrp.css"
   #app
     width 100%
     height 100%

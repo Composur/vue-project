@@ -5,7 +5,7 @@
         <div class="content-left" @click="toggleShow">
           <div class="logo-wrapper">
             <div class="logo" :class="{highlight: totalCount}">
-              <i class="iconfont icon-shopping_cart" :class="{highlight: totalCount}"></i>
+              <i class="iconfont icon-shopping_cart iconicon-test" :class="{highlight: totalCount}"></i>
             </div>
             <div class="num" v-if="totalCount">{{totalCount}}</div>
           </div>
@@ -57,7 +57,10 @@
     },
 
     computed: {
-      ...mapState(['cartFoods', 'info']),
+      ...mapState(['cartFoods', 'foodLists','foodInfo']),
+      info(){
+        return this.foodInfo
+      },
       ...mapGetters(['totalCount', 'totalPrice']),
       payClass () {
         const {totalPrice} = this

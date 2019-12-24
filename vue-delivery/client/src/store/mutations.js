@@ -44,4 +44,7 @@ export default {
   [Type.GET_FOOD_LISTS](state, payload) {
     state.foodLists = payload
   },
+  [Type.UPDATE_FOOD_COUNT](state, payload) {
+    // state.foodLists = payload
+  },
 }

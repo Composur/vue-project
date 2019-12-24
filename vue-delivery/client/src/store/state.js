@@ -8,4 +8,6 @@ export default {
     foodLists: [], // 商品列表
     foodRatings: [], // 商家评价列表
     foodInfo: {}, // 商家信息
+    cartFoods:[],
+    ratings:[]
 }

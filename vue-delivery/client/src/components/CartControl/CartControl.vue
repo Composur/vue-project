@@ -1,14 +1,15 @@
 <template>
   <div class="cartcontrol">
     <transition name="move">
-      <div class="iconfont icon-remove_circle_outline" v-if="food.count" @click.stop="updateFoodCount(false)"></div>
+      <div class="iconfont icon-remove_circle_outline  iconremovecircleoutline" v-if="food.count" @click.stop="updateFoodCount(false)"></div>
     </transition>
     <div class="cart-count" v-if="food.count">{{food.count}}</div>
-    <div class="iconfont icon-add_circle" @click.stop="updateFoodCount(true)"></div>
+    <div class="iconfont icon-add_circle iconadd-circle" @click.stop="updateFoodCount(true)"></div>
   </div>
 </template>
 
 <script>
+import {} from '../../store/mutations_types.js'
   export default {
     props: {
       food: Object
@@ -16,7 +17,7 @@
 
     methods: {
       updateFoodCount (isAdd) {
-        this.$store.dispatch('updateFoodCount', {isAdd, food: this.food})
+        // this.$store.dispatch('updateFoodCount', {isAdd, food: this.food})
       }
     }
   }
