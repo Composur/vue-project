@@ -74,6 +74,11 @@ export default {
       const res = await reqRatings()
       commit(Type.GET_RATINGS,res.data)
   },
+
+  // 食物数量更新
+  [Type.UPDATE_FOOD_COUNT]({commit},data){
+      commit(Type.UPDATE_FOOD_COUNT,data)
+  }
 } 
 
 const getLatitude=()=>{

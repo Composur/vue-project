@@ -3,7 +3,8 @@
  * 2. mutation 必须是同步函数
  * 3. 必须以相应的 type 调用 store.commit 方法进行调用 mutations
  * @param 事件类型 (type) 和 一个 回调函数 (handler(state,你传入的额外对象))
- */
+*/
+import Vue from 'vue'
 
 import * as Type from './mutations_types.js'
 
@@ -45,6 +46,17 @@ export default {
     state.foodLists = payload
   },
   [Type.UPDATE_FOOD_COUNT](state, payload) {
-    // state.foodLists = payload
+    // 购物车菜品数量更新
+    if(payload.isAdd){
+      if(!payload.food.count){
+        Vue.set(payload.food,'count',1)
+      }else{
+        payload.food.count++
+      }
+    }else{
+      if(payload.food.count){
+        payload.food.count--
+      }
+    }
   },
 }

@@ -9,15 +9,17 @@
 </template>
 
 <script>
-import {} from '../../store/mutations_types.js'
+import {UPDATE_FOOD_COUNT} from '../../store/mutations_types.js'
+import {mapState,mapActions} from 'vuex'
   export default {
     props: {
       food: Object
     },
 
     methods: {
+      ...mapActions([UPDATE_FOOD_COUNT]),
       updateFoodCount (isAdd) {
-        // this.$store.dispatch('updateFoodCount', {isAdd, food: this.food})
+        this[UPDATE_FOOD_COUNT]({isAdd, food: this.food})
       }
     }
   }

@@ -9,5 +9,5 @@ export default {
     foodRatings: [], // 商家评价列表
     foodInfo: {}, // 商家信息
     cartFoods:[],
-    ratings:[]
+    ratings:[],
 }
