@@ -1,8 +1,5 @@
 // 基于 state 的 getter 计算属性的对象
 export default {
-  doLoginUserInfo:state =>{
-    return state.loginUserInfo.data || {}
-  },
   totalCount (state) {
     return state.cartFoods.reduce((preTotal, food) => preTotal + food.count , 0)
   },

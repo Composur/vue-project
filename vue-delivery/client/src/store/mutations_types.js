@@ -19,5 +19,8 @@ export const GET_FOOD_LISTS = 'get_food_lists'
 export const GET_FOOD_INFO = 'get_food_info' 
 export const GET_RATINGS = 'get_ratings' 
 
-// 添加商品数量
+// 更新商品数量
 export const UPDATE_FOOD_COUNT = 'update_food_count' 
+
+// 清空购物车
+export const CLEAR_CART = 'clear_cart'

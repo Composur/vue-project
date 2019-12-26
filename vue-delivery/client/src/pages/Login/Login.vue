@@ -173,7 +173,7 @@ export default {
   },
   watch: {
     // 用户信息
-    loginUserInfo(value){
+    doLoginUserInfo(value){
       this.$nextTick(()=>{
          if(value.code){
           this.showTip(value.msg)

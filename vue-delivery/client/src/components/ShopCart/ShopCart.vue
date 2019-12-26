@@ -46,9 +46,9 @@
 <script>
   import { MessageBox } from 'mint-ui'
   import BScroll from 'better-scroll'
-  import {mapState, mapGetters} from 'vuex'
+  import {mapState, mapGetters,mapActions} from 'vuex'
   import CartControl from '../CartControl/CartControl.vue'
-
+  import {CLEAR_CART} from '../../store/mutations_types.js'
   export default {
     data () {
       return {
@@ -83,6 +83,7 @@
       listShow () {
         // 如果总数量为0, 直接不显示
         if(this.totalCount===0) {
+          // 不然添加商品会显示列表
           this.isShow = false
           return false
         }
@@ -107,6 +108,7 @@
 
 
     methods: {
+      ...mapActions([CLEAR_CART]),
       toggleShow () {
         // 只有当总数量大于0时切换
         if(this.totalCount>0) {
@@ -116,7 +118,7 @@
 
       clearCart () {
         MessageBox.confirm('确定清空购物车吗?').then(action => {
-          this.$store.dispatch('clearCart')
+          this[CLEAR_CART]()
         }, () => {});
       }
     },

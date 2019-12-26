@@ -45,7 +45,7 @@
       </div>
       <ShopCart />
     </div>
-    <Food :food="food" ref="food"/>
+    <Food :food="food" ref="food" />
   </div>
 </template>
 
@@ -65,6 +65,7 @@
         scrollY: 0, // 右侧滑动的Y轴坐标 (滑动过程时实时变化)
         tops: [], // 所有右侧分类li的top组成的数组  (列表第一次显示后就不再变化)
         food: {}, // 需要显示的food
+        show:false
       }
     },
     mounted() {

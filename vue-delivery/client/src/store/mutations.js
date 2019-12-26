@@ -21,21 +21,6 @@ export default {
   [Type.GET_SHOP_LIST](state, payload) {
     state.shopList = payload
   },
-  [Type.GET_LOGIN_MSG](state, payload) {
-    state.loginUserInfo = payload
-  },
-  [Type.GET_LOGIN](state, payload) {
-    state.loginUserInfo = payload
-  },
-  [Type.GET_CODE](state, payload) {
-    state.msgCcode = payload
-  },
-  [Type.GET_USER_INFO](state, payload) {
-    state.loginUserInfo = payload
-  },
-  [Type.GET_OUT](state, payload) {
-    state.loginUserInfo = payload
-  },
   [Type.GET_FOOD_INFO](state, payload) {
     state.foodInfo = payload
   },
@@ -49,14 +34,27 @@ export default {
     // 购物车菜品数量更新
     if(payload.isAdd){
       if(!payload.food.count){
+        // 这样才有数据绑定效果
         Vue.set(payload.food,'count',1)
+         // 添加到购物车
+        state.cartFoods.push(payload.food)
       }else{
         payload.food.count++
       }
     }else{
       if(payload.food.count){
-        payload.food.count--
+          payload.food.count--
+        if(payload.food.count===0){
+          // 清除此商品
+          state.cartFoods.splice(state.cartFoods.indexOf(payload.food), 1)
+        }
       }
     }
   },
+  [Type.CLEAR_CART](state){
+    // 清空foodLists的添加的商品数量
+    state.cartFoods.forEach(food => food.count = 0)
+    //  清空购物车的商品
+    state.cartFoods=[]
+  }
 }

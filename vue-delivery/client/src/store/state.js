@@ -4,10 +4,9 @@ export default {
     address:'定位中...',
     shopList:[],//商品列表
     shops:[],//商铺,
-    loginUserInfo:{}, 
+    cartFoods:[],//购物车商品
     foodLists: [], // 商品列表
     foodRatings: [], // 商家评价列表
     foodInfo: {}, // 商家信息
-    cartFoods:[],
     ratings:[],
 }

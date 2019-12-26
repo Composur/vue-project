@@ -46,7 +46,7 @@ import {mapState,mapActions} from 'vuex'
         transition all .3s
       &.move-enter, &.move-leave-to
         opacity 0
-        transform translateX(15px) rotate(180deg)
+        transform translateX(15px) rotate(90deg)
     .cart-count
       display: inline-block
       vertical-align: top
