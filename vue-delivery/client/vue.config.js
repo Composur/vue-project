@@ -35,5 +35,5 @@ module.exports={
       .set('@pages',resolve('src/pages'))
   },
   // esLint
-  lintOnSave: process.env.NODE_ENV !== 'production'
+  lintOnSave: process.env.NODE_ENV !== 'production',
 }

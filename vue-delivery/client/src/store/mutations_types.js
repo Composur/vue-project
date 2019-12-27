@@ -24,3 +24,7 @@ export const UPDATE_FOOD_COUNT = 'update_food_count'
 
 // 清空购物车
 export const CLEAR_CART = 'clear_cart'
+
+
+// scroll 刷新
+export const CHANGE_SCROLL_TO_FLAG = 'change_scroll_to_flag'

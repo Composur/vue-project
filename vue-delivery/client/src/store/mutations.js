@@ -25,7 +25,7 @@ export default {
     state.foodInfo = payload
   },
   [Type.GET_RATINGS](state, payload) {
-    state.foodRatings = payload
+    state.ratings = payload
   },
   [Type.GET_FOOD_LISTS](state, payload) {
     state.foodLists = payload

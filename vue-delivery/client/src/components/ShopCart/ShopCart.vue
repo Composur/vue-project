@@ -25,19 +25,21 @@
             <span class="empty" @click="clearCart">清空</span>
           </div>
           <div class="list-content">
-            <ul>
-              <li class="food" v-for="(food, index) in cartFoods" :key="index">
-                <span class="name">{{food.name}}</span>
-                <div class="price"><span>￥{{food.price}}</span></div>
-                <div class="cartcontrol-wrapper">
-                  <CartControl :food="food"/>
-                </div>
-              </li>
-            </ul>
+            <!-- 滑动 -->
+            <!-- <scroll-view :pullup='true'> -->
+              <ul>
+                <li class="food" v-for="(food, index) in cartFoods" :key="index">
+                  <span class="name">{{food.name}}</span>
+                  <div class="price"><span>￥{{food.price}}</span></div>
+                  <div class="cartcontrol-wrapper">
+                    <CartControl :food="food"/>
+                  </div>
+                </li>
+              </ul>
+            <!-- </scroll-view> -->
           </div>
         </div>
       </transition>
-
     </div>
     <div class="list-mask" v-show="listShow" @click="toggleShow"></div>
   </div>
@@ -98,7 +100,6 @@
             } else {
               this.scroll.refresh() // 让滚动条刷新一下: 重新统计内容的高度
             }
-
           })
         }
 

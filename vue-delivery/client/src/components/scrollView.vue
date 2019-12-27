@@ -12,7 +12,7 @@
 <script>
 import BScroll from 'better-scroll'
 import store from '../store'
-import {SAVE_CURRENT} from '../store/mutation-types'
+import {SAVE_CURRENT} from '../store/mutations_types.js'
 export default {
   props: {
     /**
