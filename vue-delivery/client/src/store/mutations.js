@@ -30,6 +30,9 @@ export default {
   [Type.GET_FOOD_LISTS](state, payload) {
     state.foodLists = payload
   },
+  [Type.GET_SEARCH_RESULT](state, payload) {
+    state.searchShops = payload
+  },
   [Type.UPDATE_FOOD_COUNT](state, payload) {
     // 购物车菜品数量更新
     if(payload.isAdd){

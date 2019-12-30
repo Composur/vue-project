@@ -40,7 +40,7 @@
           </span>
         </div>
         <div class="switch" :class="{on: onlyShowText}" @click="toggleOnlyShowText">
-          <span class="iconfont icon-check_circle"></span>
+          <span class="iconfont icon-check_circle iconiccheckcircleo"></span>
           <span class="text">只看有内容的评价</span>
         </div>
       </div>
@@ -59,7 +59,7 @@
               </div>
               <p class="text">{{rating.text}}</p>
               <div class="recommend">
-                <span class="iconfont" :class="rating.rateType===0 ? 'icon-thumb_up' : 'icon-thumb_down'"></span>
+                <span class="iconfont" :class="rating.rateType===0 ? 'icon-thumb_up iconLikevotethumbup' : 'icon-thumb_down iconDislikeunlikethumbdown'"></span>
                 <span class="item" v-for="(item, index) in rating.recommend" :key="index">{{item}}</span>
               </div>
               <div class="time">{{rating.rateTime | dateFormat }}</div>

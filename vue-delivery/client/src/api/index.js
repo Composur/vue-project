@@ -33,6 +33,10 @@ export const reqUserInfo = () => request('/userinfo')
 export const reqLoginOut = ()=> request('/logout')
 
 
+// 商品搜索
+export const getSearchResult = data => request('/search_shops','get',data)
+
+
 /**
  * @description 商品详情页相关 
  */  

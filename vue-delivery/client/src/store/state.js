@@ -8,4 +8,5 @@ export default {
     foodLists: [], // 商品列表
     foodInfo: {}, // 商家信息
     ratings:[],// 商家评价列表
+    searchShops:{} //搜索商品列表
 }

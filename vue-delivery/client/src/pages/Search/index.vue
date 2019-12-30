@@ -29,24 +29,52 @@
     <div class="search_none" v-else>很抱歉！无搜索结果</div>
   </section>
 </template>
+
 <script>
-import HeaderTop from '../../components/HeaderTop/HeaderTop'
-export default {
-  data() {
-    return {
-      userInfo:{
-        
-      },
-      noSearchShops:[],
-      keyword:''
-    }
-  },
-   components: {
+  import {mapState,mapActions} from 'vuex'
+  import {GET_SEARCH_RESULT} from '../../store/mutations_types.js'
+  import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
+  export default {
+
+    data () {
+      return {
+        keyword: '',
+        imgBaseUrl: 'http://cangdu.org:8001/img/',
+        noSearchShops: false
+      }
+    },
+
+    computed: {
+      ...mapState(['searchShops','latitude','longitude'])
+    },
+
+    methods: {
+      ...mapActions([GET_SEARCH_RESULT]),
+      search () {
+        // 得到搜索关键字
+        const keyword = this.keyword.trim()
+        // 进行搜索
+        if(keyword) {
+          this[GET_SEARCH_RESULT]({latitude:this.latitude,longitude:this.longitude})
+        }
+      }
+    },
+
+    watch: {
+      searchShops (value) {
+        if(!value.length) { // 没有数据
+          this.noSearchShops = true
+        } else {// 有数据
+          this.noSearchShops = false
+        }
+      }
+    },
+
+    components: {
       HeaderTop
     }
-}
+  }
 </script>
-
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   @import "../../common/stylus/mixins.styl"
@@ -104,6 +132,7 @@ export default {
                 &:last-child
                   margin-bottom 0
     .search_none
+      font-size 14px
       margin: 0 auto
       color: #333
       background-color: #fff

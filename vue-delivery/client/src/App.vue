@@ -37,7 +37,7 @@ export default {
 
 
 <style lang="stylus" rel="stylesheet/stylus">
-@import '//at.alicdn.com/t/font_1560118_woiczy2ulrp.css';
+@import '//at.alicdn.com/t/font_1560118_3hruw9mwff.css';
 @include font-dpr(16px);
 #app {
   width: 100%;
