@@ -11,7 +11,7 @@ import loading from './common/imgs/loading.gif'
 // 加载模拟数据
 import './mock/mockServer.js'
 
-import './common/JsBridge'
+// import './common/JsBridge' 不需要引入
 
 import {Button} from 'mint-ui'
 import scrollView from '@components/scrollView'

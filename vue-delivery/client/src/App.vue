@@ -17,6 +17,7 @@ export default {
   methods: {
     // 连接 IOS bridge
     setupWKWebViewJavascriptBridge(callback) {
+      // WebViewJavascriptBridge 由原生容器提供
       if (window.WebViewJavascriptBridge) {
         // window.WebViewJavascriptBridge.callHandler(
         //   'submitFromWeb',
