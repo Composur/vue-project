@@ -19,7 +19,7 @@ import {Button} from 'mint-ui'
 // import scrollView from '@components/scrollView'
 // 注册成全局的组件
 Vue.component(Button.name,Button)
-Vue.component('scroll-view',scrollView)
+// Vue.component('scroll-view',scrollView)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: loading,
