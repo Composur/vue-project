@@ -26,7 +26,11 @@
       </ul>
     </section>
 
-    <div class="search_none" v-else>很抱歉！无搜索结果</div>
+    <div class="search_none" v-else> 
+     很抱歉！无搜索结果 <span v-if="searchShops.message">
+        {{searchShops.message}}
+        </span> 
+    </div>
   </section>
 </template>
 

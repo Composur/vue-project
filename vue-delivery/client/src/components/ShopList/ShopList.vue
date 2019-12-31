@@ -5,7 +5,7 @@
         <a>
           <div class="shop_left">
             <!-- <img class="shop_img" :src="baseImgUrl+shops.image_path"> -->
-            <img class="shop_img" src="./images/shop/1.jpg">
+            <img class="shop_img" src="./images/nav/2.jpg">
           </div>
           <div class="shop_right">
             <section class="shop_detail_header">
@@ -60,7 +60,8 @@ export default {
   },
   data () {
     return {
-      baseImgUrl: 'http://cangdu.org:8001/img/'
+      // baseImgUrl: 'http://cangdu.org:8001/img/'
+      baseImgUrl: "./images/shop/"+Math.floor(Math.random()*4)+'.jpg'
     }
   },
   mounted: function () {
@@ -71,7 +72,7 @@ export default {
   methods: {
     goDetail(){
       this.$router.push('/detail')
-    }
+    },
   },
   components:{
     Star

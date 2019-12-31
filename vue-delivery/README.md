@@ -6,6 +6,10 @@
 #### 首页
 
 ![home](./client/doc/img/home.jpg)
+![home](./client/doc/img/buy.jpg)
+![home](http://cdn.xutong.top/buy.jpg)
+![home](http://cdn.xutong.top/buy02.jpg)
+![home](./client/doc/img/buy02.jpg)
 ![login](./client/doc/img/login.jpg)
 ![order](./client/doc/img/order.jpg)
 ![user](./client/doc/img/user.jpg)

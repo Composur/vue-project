@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './route'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
+import { InfiniteScroll } from 'mint-ui';
+
 import loading from './common/imgs/loading.gif'
 
 // 屏幕适配
@@ -25,6 +27,7 @@ Vue.use(VueLazyload, {
   attempt: 1
 })
 Vue.config.productionTip = false
+Vue.use(InfiniteScroll);
 new Vue({
   render: h => h(App),
   router,// 引入的时候要写成router:router

@@ -19,8 +19,8 @@
               <div class="swiper-slide" v-for="(item,index) in newShops" :key="index" >
                 <a href="javascript:" class="link_to_food" v-for="(key, index) in item" :key="index">
                   <div class="food_container">
-                    <img src="./images/nav/1.jpg">
-                   <!-- <img :src="baseImgURL+key.image_url"> -->
+                    <!-- <img src="./images/nav/1.jpg"> -->
+                   <img :src="baseImgURL+key.image_url">
                   </div>
                   <span>{{key.title}}</span>
                 </a>
