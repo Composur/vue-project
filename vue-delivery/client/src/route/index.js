@@ -1,16 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from '../pages/Home'
-import Order from '../pages/Order'
-import User from '../pages/User'
-import Search from '../pages/Search'
-import Login from '../pages/Login/Login.vue'
+const Home = ()=> import('../pages/Home')
 
-import Detail from '@pages/Detail'
-import Appraise from '@pages/Detail/Appraise'
-import Business from '@pages/Detail/Business'
-import OrderFood from '@pages/Detail/OrderFood'
+const Order = ()=> import('../pages/Order')
+
+const User = ()=> import( '../pages/User')
+
+const Search = ()=> import( '../pages/Search')
+const Login = ()=> import( '../pages/Login/Login.vue')
+
+const Detail = ()=> import( '@pages/Detail')
+const Appraise = ()=> import( '@pages/Detail/Appraise')
+const Business = ()=> import( '@pages/Detail/Business')
+const OrderFood = ()=> import( '@pages/Detail/OrderFood')
+
 
 
 Vue.use(VueRouter)

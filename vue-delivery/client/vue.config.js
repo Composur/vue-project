@@ -9,6 +9,7 @@ const resolve = (dir)=>{
 
 
 module.exports={
+  publicPath: './',
   devServer: {
     hot: true, //热加载
     // host: process.env.HOST || '0.0.0.0', //ip地址
