@@ -2,6 +2,7 @@
  * @description 对默认的配置进行覆盖
  */  
 const NODE_ENV= process.env.NODE_ENV
+const production = ( NODE_ENV ==='production'?true:false)
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
@@ -40,7 +41,7 @@ module.exports={
   },
   configureWebpack: {
     plugins: [
-      // new BundleAnalyzerPlugin(),
+      new BundleAnalyzerPlugin(),
       new CompressionWebpackPlugin({
         filename: '[path].gz[query]',
         algorithm: 'gzip',
@@ -51,5 +52,5 @@ module.exports={
     ]
   },
   // esLint
-  lintOnSave: process.env.NODE_ENV !== 'production',
+  lintOnSave: !production,
 }
