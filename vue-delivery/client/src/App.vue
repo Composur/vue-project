@@ -7,6 +7,7 @@
 
 <script>
 import "./assets/css/reset.css";
+import Loading from './components/loading.vue'
 import Footer from "./components/Footer";
 
 export default {
@@ -31,7 +32,8 @@ export default {
     },
   },
   components: {
-    Footer
+    Footer,
+    Loading
   }
 };
 </script>

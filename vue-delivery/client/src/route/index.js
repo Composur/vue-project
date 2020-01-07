@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Loading from '../components/loading.vue'
 
-const Home = ()=> import('../pages/Home')
+// const Home = ()=> import('../pages/Home')
 
 const User = ()=> import('../pages/User')
 
 import Order from '../pages/Order'
 import Search from '../pages/Search'
+
 
 const Login = ()=> import( '../pages/Login/Login.vue')
 
@@ -15,14 +17,26 @@ const Appraise = ()=> import( '@pages/Detail/Appraise')
 const Business = ()=> import( '@pages/Detail/Business')
 const OrderFood = ()=> import( '@pages/Detail/OrderFood')
 
+
+const loadable = (asyncFn) =>{
+  const AsyncComponent = () => ({
+    component:asyncFn(),
+    loading:Loading
+  })
+  return {
+    render(h) {
+     return h(AsyncComponent)
+    },
+  }
+}
+
+
 Vue.use(VueRouter)
-
-
 const Router = new VueRouter({
   routes:[
     {
       path:'/home',
-      component:Home,
+      component:loadable(()=> import('@/pages/Home/index.vue')),
       meta:{
         show:true
       }
@@ -76,7 +90,7 @@ const Router = new VueRouter({
     },
     {
       path:'/',
-      component:Home,
+      component:loadable(()=> import('@/pages/Home')),
       meta:{
         show:true
       }
