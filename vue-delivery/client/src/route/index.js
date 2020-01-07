@@ -3,19 +3,17 @@ import VueRouter from 'vue-router'
 
 const Home = ()=> import('../pages/Home')
 
-const Order = ()=> import('../pages/Order')
+const User = ()=> import('../pages/User')
 
-const User = ()=> import( '../pages/User')
+import Order from '../pages/Order'
+import Search from '../pages/Search'
 
-const Search = ()=> import( '../pages/Search')
 const Login = ()=> import( '../pages/Login/Login.vue')
 
 const Detail = ()=> import( '@pages/Detail')
 const Appraise = ()=> import( '@pages/Detail/Appraise')
 const Business = ()=> import( '@pages/Detail/Business')
 const OrderFood = ()=> import( '@pages/Detail/OrderFood')
-
-
 
 Vue.use(VueRouter)
 
