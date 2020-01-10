@@ -13,7 +13,7 @@ const resolve = (dir)=>{
 
 
 module.exports={
-  publicPath: './',
+  publicPath:'./',
   devServer: {
     hot: true, //热加载
     // host: process.env.HOST || '0.0.0.0', //ip地址
@@ -41,14 +41,14 @@ module.exports={
   },
   configureWebpack: {
     plugins: [
-      new BundleAnalyzerPlugin(),
-      new CompressionWebpackPlugin({
-        filename: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: productionGzipExtensions,
-        threshold: 10240,
-        minRatio: 0.8
-      })
+      // new BundleAnalyzerPlugin(),
+      // new CompressionWebpackPlugin({
+      //   filename: '[path].gz[query]',
+      //   algorithm: 'gzip',
+      //   test: productionGzipExtensions,
+      //   threshold: 10240,
+      //   minRatio: 0.8
+      // })
     ]
   },
   // esLint
