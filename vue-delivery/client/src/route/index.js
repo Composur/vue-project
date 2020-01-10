@@ -12,10 +12,10 @@ import Search from '../pages/Search'
 
 const Login = ()=> import( '../pages/Login/Login.vue')
 
-const Detail = ()=> import( '@pages/Detail')
-const Appraise = ()=> import( '@pages/Detail/Appraise')
-const Business = ()=> import( '@pages/Detail/Business')
-const OrderFood = ()=> import( '@pages/Detail/OrderFood')
+const Detail = ()=> import( '../pages/Detail')
+const Appraise = ()=> import( '../pages/Detail/Appraise')
+const Business = ()=> import( '../pages/Detail/Business')
+const OrderFood = ()=> import( '../pages/Detail/OrderFood')
 
 
 const loadable = (asyncFn) =>{
@@ -36,7 +36,7 @@ const Router = new VueRouter({
   routes:[
     {
       path:'/home',
-      component:loadable(()=> import('@/pages/Home/index.vue')),
+      component:loadable(()=> import('../pages/Home/index.vue')),
       meta:{
         show:true
       }

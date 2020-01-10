@@ -61,7 +61,7 @@ export default {
    
     // 获取定位信息
     // this.$store.dispatch(Type.GET_ADDRESS)
-    this[Type.GET_ADDRESS]()
+    // this[Type.GET_ADDRESS]()
     this[Type.GET_SHOPS]()
     this[Type.GET_SHOP_LIST]()
   },

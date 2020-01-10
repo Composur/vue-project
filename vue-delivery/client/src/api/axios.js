@@ -38,10 +38,22 @@ export default function (url, type = 'GET', data={}) {
   // axios.defaults.headers.common['Authorization'] = store.get('token')
   let promise;
 
-  // mock 的 URL 不走代理
-  if(!['/goods','/ratings','/foodInfo'].includes(url)){
-    url=config.baseURl+url
+ 
+
+  if(process.env.NODE_ENV==='production'){
+      if(!['/goods','/ratings','/foodInfo'].includes(url)){
+        url=config.baseURlDev+url
+      }else{
+        url=config.baseURl+url
+      }
+  }else{
+    // mock 的 URL 不走代理
+    if(!['/goods','/ratings','/foodInfo'].includes(url)){
+      url=config.baseURlDev+url
+    }
   }
+
+
   // 返回一个promise，统一处理错误
   return new Promise((resolve) => {
     // 1.执行异步请求

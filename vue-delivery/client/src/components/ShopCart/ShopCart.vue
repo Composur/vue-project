@@ -19,7 +19,7 @@
         </div>
       </div>
       <transition name="move">
-        <div class="shopcart-list" v-show="listShow">
+        <div class="shopcart-list" v-show="isShow">
           <div class="list-header">
             <h1 class="title">购物车</h1>
             <span class="empty" @click="clearCart">清空</span>
@@ -41,7 +41,7 @@
         </div>
       </transition>
     </div>
-    <div class="list-mask" v-show="listShow" @click="toggleShow"></div>
+    <div class="list-mask" v-show="isShow" @click="toggleShow"></div>
   </div>
 </template>
 
@@ -54,79 +54,100 @@
   export default {
     data () {
       return {
-        isShow: false
+        isShow: false,
       }
     },
 
-    computed: {
-      ...mapState(['cartFoods', 'foodLists','foodInfo']),
-      info(){
-        return this.foodInfo
-      },
-      ...mapGetters(['totalCount', 'totalPrice']),
-      payClass () {
-        const {totalPrice} = this
-        const {minPrice} = this.info
+  computed: {
+    ...mapState(['cartFoods', 'foodLists','foodInfo']),
+    info(){
+      return this.foodInfo
+    },
+    ...mapGetters(['totalCount', 'totalPrice']),
+    payClass () {
+      const {totalPrice} = this
+      const {minPrice} = this.info
 
-        return totalPrice>=minPrice ? 'enough' : 'not-enough'
-      },
-      payText () {
-        const {totalPrice} = this
-        const {minPrice} = this.info
-        if(totalPrice===0) {
-          return `￥${minPrice}元起送`
-        } else if(totalPrice<minPrice) {
-          return `还差￥${minPrice-totalPrice}元起送`
-        } else {
-          return '结算'
-        }
-      },
+      return totalPrice>=minPrice ? 'enough' : 'not-enough'
+    },
+    payText () {
+      const {totalPrice} = this
+      const {minPrice} = this.info
+      if(totalPrice===0) {
+        return `￥${minPrice}元起送`
+      } else if(totalPrice<minPrice) {
+        return `还差￥${minPrice-totalPrice}元起送`
+      } else {
+        return '结算'
+      }
+    },
 
-      listShow () {
-        // 如果总数量为0, 直接不显示
-        if(this.totalCount===0) {
-          // 不然添加商品会显示列表
-          this.isShow = false
-          return false
-        }
+    // listShow () {
+    //   // 如果总数量为0, 直接不显示
+    //   if(this.totalCount===0) {
+    //     // 不然添加商品会显示列表
+    //     this.isShow = false
+    //   }
 
-        if(this.isShow) {
-          this.$nextTick(() => {
-            // 实现BScroll的实例是一个单例
-            if(!this.scroll) {
-              this.scroll = new BScroll('.list-content', {
-                click: true
-              })
-            } else {
-              this.scroll.refresh() // 让滚动条刷新一下: 重新统计内容的高度
-            }
+    //   if(this.isShow) {
+    //     this.$nextTick(() => {
+    //       // 实现BScroll的实例是一个单例
+    //       if(!this.scroll) {
+    //         this.scroll = new BScroll('.list-content', {
+    //           click: true
+    //         })
+    //       } else {
+    //         this.scroll.refresh() // 让滚动条刷新一下: 重新统计内容的高度
+    //       }
+    //     })
+    //   }
+    //   return this.isShow
+    // }
+  },
+
+  watch: {
+    totalCount(){
+      // 如果总数量为0, 直接不显示
+      if(this.totalCount===0) {
+        // 不然添加商品会显示列表
+        this.isShow = false
+      }
+    },
+    isShow(){
+      if(this.isShow) {
+      this.$nextTick(() => {
+        // 实现BScroll的实例是一个单例
+        if(!this.scroll) {
+          this.scroll = new BScroll('.list-content', {
+            click: true
           })
+        } else {
+          this.scroll.refresh() // 让滚动条刷新一下: 重新统计内容的高度
         }
-
-        return this.isShow
-      }
-    },
-
-
-    methods: {
-      ...mapActions([CLEAR_CART]),
-      toggleShow () {
-        // 只有当总数量大于0时切换
-        if(this.totalCount>0) {
-          this.isShow = !this.isShow
-        }
-      },
-
-      clearCart () {
-        MessageBox.confirm('确定清空购物车吗?').then(action => {
-          this[CLEAR_CART]()
-        }, () => {});
-      }
-    },
-    components: {
-      CartControl
+      })
     }
+    return this.isShow
+    }
+  },
+  methods: {
+    ...mapActions([CLEAR_CART]),
+    toggleShow () {
+      // 只有当总数量大于0时切换
+      if(this.totalCount>0) {
+        this.isShow = !this.isShow
+      }
+    },
+
+    clearCart () {
+      MessageBox.confirm('确定清空购物车吗?').then(() => {
+        this[CLEAR_CART]()
+      }, () => {});
+    }
+  },
+  components: {
+    CartControl
   }
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>

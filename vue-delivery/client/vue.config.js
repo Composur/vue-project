@@ -13,13 +13,15 @@ const resolve = (dir)=>{
 
 
 module.exports={
-  publicPath:'./',
+  publicPath: process.env.NODE_ENV === 'production'
+  ? './'
+  : '/',
   devServer: {
     hot: true, //热加载
-    // host: process.env.HOST || '0.0.0.0', //ip地址
+    host: process.env.HOST || '0.0.0.0', //ip地址
     // host: 'localhost',
-    port: 8081, //端口
-    https: false, //false关闭https，true为开启
+    port: 8888, //端口
+    // https: false, //false关闭https，true为开启
     open: true, //自动打开浏览器
     proxy: {
         '/api': { //本地                                        
@@ -52,5 +54,6 @@ module.exports={
     ]
   },
   // esLint
-  lintOnSave: !production,
+  lintOnSave: false,
+  productionSourceMap:false
 }
