@@ -80,7 +80,7 @@ computed: {
 
 ### 4. 原生事件 / vue自定义事件 / 全局事件总线
     1). 什么条件下绑定的原生DOM事件监听?
-        a. 给html标签绑定dom事件监听: <div @click="handleClick">
+        a. 给html标签绑定dom事件监听: <div ="handleClick">
         b. 给组件标签绑定dom事件监听(使用.native): <MyCommponent @click.native="handleClick">
     2). 什么条件下绑定的vue自定义事件监听?
         a. 自定义事件名:  <MyComponent @xxx="handleClick2">

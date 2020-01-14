@@ -28,21 +28,22 @@ Vue.use(VueLazyload, {
 Vue.config.productionTip = false
 Vue.use(InfiniteScroll);
 
+new Vue({
+  render: h => h(App),
+  router,// 引入的时候要写成router:router
+  store
+}).$mount('#app') 
 
-const env = process.env.NODE_ENV
-const app=()=>{
-  new Vue({
-    render: h => h(App),
-    router,// 引入的时候要写成router:router
-    store
-  }).$mount('#app') 
-}
-if(env==='development'){
-  app()
-}else{
-  document.addEventListener('deviceready', function() {
-    app()
-    window.navigator.splashscreen.hide()
-  }, false);
-}
+// const env = process.env.NODE_ENV
+// const app=()=>{
+  
+// }
+// if(env==='development'){
+//   app()
+// }else{
+//   document.addEventListener('deviceready', function() {
+//     app()
+//     window.navigator.splashscreen.hide()
+//   }, false);
+// }
 

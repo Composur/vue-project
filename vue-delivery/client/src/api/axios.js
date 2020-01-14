@@ -37,23 +37,24 @@ axios.interceptors.response.use(
 export default function (url, type = 'GET', data={}) {
   // axios.defaults.headers.common['Authorization'] = store.get('token')
   let promise;
-
- 
-
-  if(process.env.NODE_ENV==='production'){
-      if(!['/goods','/ratings','/foodInfo'].includes(url)){
-        url=config.baseURlDev+url
-      }else{
-        url=config.baseURl+url
-      }
+  // if(process.env.NODE_ENV==='production'){
+  //     if(!['/goods','/ratings','/foodInfo'].includes(url)){
+  //       url=config.baseURlDev+url
+  //     }else{
+  //       url=config.baseURl+url
+  //     }
+  // }else{
+  //   // mock 的 URL 不走代理
+  //   if(!['/goods','/ratings','/foodInfo'].includes(url)){
+  //     url=config.baseURlDev+url
+  //   }
+  // }
+  // url=config.baseURl+url
+  if(!['/goods','/ratings','/foodInfo'].includes(url)){
+      url=config.baseURl+url
   }else{
-    // mock 的 URL 不走代理
-    if(!['/goods','/ratings','/foodInfo'].includes(url)){
       url=config.baseURlDev+url
-    }
   }
-
-
   // 返回一个promise，统一处理错误
   return new Promise((resolve) => {
     // 1.执行异步请求
@@ -84,8 +85,10 @@ export default function (url, type = 'GET', data={}) {
       }
     }).catch(err => {
       const {data}= err
+      console.log(err)
       if(data&&data.msg){
         // message.error('请求出错'+data.msg)
+        console.log(data.msg)
         return 
       }
       // 3.失败调用reject，但是不能调用，调用就进入外层catch里了，为了不在外层用try...catch这里显式的返回error
