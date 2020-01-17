@@ -155,6 +155,40 @@ computed: {
       activated(): 路由组件激活, 被复用
 
 
+### v-modal 的使用
+```
+data(){
+    $ 模板上绑定的数据类型 v-modal 的类型
+    radios:Boolean,  // 单选框
+    checkBox:Array,  // 多选框
+    select:  String || Array   // 下拉框
+}
+```
+#### 修饰符
+1. v-modal.lazy
+    + 事件触发的时候才调用，例如 input 回车的时候取值而不是实时取值
+2. v-modal.number
+    + 必须是数字，因为v-modal 赋值的时候是 string 类型
+3. v-modal.trim
+    + 去除两边的空格
+
+### 组件化
+1. 构造
+    ```
+     const componment = Vue.extend({
+         templete:`<div></div>`
+     })
+    ```
+2. 注册
+    $ 全局注册
+    ```
+    Vue.componment('my-componment',componment)
+    ```
+    $ 实例下注册的组件是局部组件
+3. 使用
+    + 在创建的实例中使用
+
+   
 
 
 
