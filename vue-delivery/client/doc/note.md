@@ -175,18 +175,26 @@ data(){
 ### 组件化
 1. 构造
     ```
-     const componment = Vue.extend({
+     const component = Vue.extend({
          templete:`<div></div>`
      })
     ```
+    语法糖注册方式
+    ```
+    Vue.component('my-component',{
+         templete:`<div></div>` 
+    })
+    ```
+
 2. 注册
     $ 全局注册
     ```
-    Vue.componment('my-componment',componment)
+    Vue.component('my-component',component)
     ```
     $ 实例下注册的组件是局部组件
 3. 使用
     + 在创建的实例中使用
+
 
    
 
