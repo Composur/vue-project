@@ -1,6 +1,6 @@
 ### 获取veux上的state
 由于 Vuex 的状态存储是响应式的，从 store 实例中读取状态最简单的方法就是在计算属性中返回某个状态：
-```
+```javascript
 computed: {
     count () {
      return this.$store.state.count
@@ -9,7 +9,7 @@ computed: {
 ```
 
 获取多个 辅助函数 mapState 返回的是一个对象
-```
+```javascript
  computed: {
     ...mapState(['address']) //映射的计算属性的名称与 state 的子节点名称相同,都是address 可以简写成这样
   },
@@ -30,19 +30,53 @@ computed: {
 + computed
 
 ### 1. slot/插槽
-    1). 插槽的作用:
-        父组件向子组件传递标签结构(也可以是数据)
-        通过标签体传递, 而不再是标签属性
-    2). slot的分类
-        普通插槽(slot)
-        命名插槽(named slot)
-        作用域插槽(scoped slot)
-    3). 区别
-        普通插槽: 子组件只能有一个插槽, 标签体内容在父组件中解析好后(数据在父组件), 传递给这个插槽
-        命名插槽: 子组件有多个指定了name的插槽, 标签体内容在父组件中解析好后(数据在父组件), 分别传递给对应的插槽
-        作用域插槽: 数据在子组件, 子组件有部分结构需要父组件传递, 但父组件需要读取子组件数据
-                    子组件需要先向父组件传递数据, 父组件根据数据渲染标签结构后传递给子组件的插槽
-        需求: todo列表组件: 根据内部的todos数据显示todo列表, 但列表项的样式由使用者决定
+> 原理类似电脑上的 use 电源 耳机 插槽等，让使用者（一般是父组件传入的html模板）决定怎么使用 这是具名插槽
+```javascript
+//子组件
+<header class="header">
+    <slot name="left"></slot>
+    <slot name="right"></slot>
+</header>
+
+//父组件
+<HeaderTop :title=address showIcon>
+    <span class="header_search" slot="left">
+        <i class="iconfont iconicon_shaoma_xian"></i>
+    </span>
+    <span class="header_login" slot="right"> 
+        <i class="iconfont iconicon-xiaoxi"></i>
+    </span>
+</HeaderTop>
+
+
+```
+
+1). 插槽的作用:
+    父组件向子组件传递标签结构(也可以是数据)
+    通过标签体传递, 而不再是标签属性
+2). slot的分类
+    普通插槽(slot)
+    命名插槽(named slot)
+    作用域插槽(scoped slot)（数据由子组件决定，样式由父组件决定）
+
+    ```
+    $ 父 获取数据
+    <template :slot-scope="data">
+        //do
+    </template>
+    $ 子 传递数据
+     <slot :data='data'>
+    
+    </slot>
+    
+    ```
+
+3). 区别
+    普通插槽: 子组件只能有一个插槽, 标签体内容在父组件中解析好后(数据在父组件), 传递给这个插槽
+    命名插槽: 子组件有多个指定了name的插槽, 标签体内容在父组件中解析好后(数据在父组件), 分别传递给对应的插槽
+    作用域插槽: 数据在子组件, 子组件有部分结构需要父组件传递, 但父组件需要读取子组件数据
+                子组件需要先向父组件传递数据, 父组件根据数据渲染标签结构后传递给子组件的插槽
+    需求: todo列表组件: 根据内部的todos数据显示todo列表, 但列表项的样式由使用者决定
 
 ### 2. mixin/混合
     1). 作用:
@@ -111,7 +145,7 @@ computed: {
         如何知道数据变化了?
         通知哪些组件更新渲染?
         组件更新渲染是同步还是异步的?
-        
+
     2). 基本原理
         在初始化时: 利用Object.defineProperty()给data属性添加 setter 监视数据变化
         在初始化时: 每个组件实例都有相应的观察者 watcher 对象, 每个属性都关联上所有相关的watcher对象
@@ -174,13 +208,13 @@ data(){
 
 ### 组件化
 1. 构造
-    ```
+    ```javascript
      const component = Vue.extend({
          templete:`<div></div>`
      })
     ```
     语法糖注册方式
-    ```
+    ```javascript
     Vue.component('my-component',{
          templete:`<div></div>` 
     })
@@ -188,15 +222,25 @@ data(){
 
 2. 注册
     $ 全局注册
-    ```
+    
+    ```javascript
     Vue.component('my-component',component)
     ```
     $ 实例下注册的组件是局部组件
 3. 使用
+    
     + 在创建的实例中使用
 
+### 父子组件传参
+1. 父传子，通过 props
+    + 在子组件绑定props `v-bind:children-data='data'` 暂不支持驼峰命名
+2. 子传父，通过 自定义事件 $emit Events 发射一个事件
+    + 在子组件通过 this.$emit('事件名',obj)，事件名不支持驼峰命名
+    + 父组件上监听 v-on:事件名=methods 父组件方法中获取 obj
 
-   
+
+
+
 
 
 
