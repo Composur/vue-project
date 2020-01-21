@@ -228,7 +228,7 @@ data(){
     ```
     $ 实例下注册的组件是局部组件
 3. 使用
-    
+   
     + 在创建的实例中使用
 
 ### 父子组件传参
@@ -237,6 +237,26 @@ data(){
 2. 子传父，通过 自定义事件 $emit Events 发射一个事件
     + 在子组件通过 this.$emit('事件名',obj)，事件名不支持驼峰命名
     + 父组件上监听 v-on:事件名=methods 父组件方法中获取 obj
+
+
+
+### vue-router
+
+> 路由表：是一个映射表，决定了数据包的指向，内网 IP 和 mac 地址绑定
+
+#### 1.使用
+
++ 通过 Vue.use(Router) 安装插件
+
++ 通过 mode 配置 hash 和 history 两种模式
+
++ ```html
+  <router-link to = '/path' replace active-class="active 可以在路由统一定义选中样式"> // 默认是 push 浏览器可以前进、回退
+  ```
+
++ 可以在方法中获取 this.$router
+
+
 
 
 
