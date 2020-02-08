@@ -250,15 +250,20 @@ data(){
 
 + 通过 mode 配置 hash 和 history 两种模式
 
-+ ```html
-  <router-link to = '/path' replace active-class="active 可以在路由统一定义选中样式"> // 默认是 push 浏览器可以前进、回退
-  ```
-
 + 可以在方法中获取 this.$router
 
+#### 1.1 Router-link
 
+```
+ <--! 默认是 push 浏览器可以前进、回退 -->
+<router-link to = '/path' replace active-class="active 可以在路由统一定义选中样式">   
+```
 
+#### 1.2
 
++ $route 代表当前路由 可以配置meta属性
+
++ $router 是路由方法
 
 
 

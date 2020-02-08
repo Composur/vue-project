@@ -48,7 +48,7 @@ const Router = new VueRouter({
         show:true
       }
     },
-    {
+    { 
       path:'/user',
       component:User,
       meta:{
