@@ -242,7 +242,22 @@ data(){
 
 ### vue-router
 
-> 路由表：是一个映射表，决定了数据包的指向，内网 IP 和 mac 地址绑定
+> 路由表：是一个映射表，决定了数据包的指向，内网 IP 和 mac 地址绑定。
+>
+> 解析过程：
+>
+> 1. 导航被触发。
+> 2. 在失活的组件里调用离开守卫。
+> 3. 调用全局的 `beforeEach` 守卫。
+> 4. 在重用的组件里调用 `beforeRouteUpdate` 守卫 (2.2+)。
+> 5. 在路由配置里调用 `beforeEnter`。
+> 6. 解析异步路由组件。
+> 7. 在被激活的组件里调用 `beforeRouteEnter`。
+> 8. 调用全局的 `beforeResolve` 守卫 (2.5+)。
+> 9. 导航被确认。
+> 10. 调用全局的 `afterEach` 钩子。
+> 11. 触发 DOM 更新。
+> 12. 用创建好的实例调用 `beforeRouteEnter` 守卫中传给 `next` 的回调函数。
 
 #### 1.使用
 
@@ -254,16 +269,23 @@ data(){
 
 #### 1.1 Router-link
 
-```
+```html
  <--! 默认是 push 浏览器可以前进、回退 -->
 <router-link to = '/path' replace active-class="active 可以在路由统一定义选中样式">   
 ```
 
 #### 1.2
 
-+ $route 代表当前路由 可以配置meta属性
++ $route 代表当前路由，可以配置 meta 等属性。
++ 例如可以在  `beforeEach` 里面实现获取每一个 meta 的 title 改变标签页的 title
++ $router 是路由方法，是 new Router 。
 
-+ $router 是路由方法
+#### 导航守卫
+
+##### 全局守卫
+
++ beforeEnter
++ afterEnter
 
 
 
