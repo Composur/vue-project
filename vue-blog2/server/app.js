@@ -30,15 +30,16 @@ app.use(bodyParser.json())
 
 
 // cors
+// app.use(cors)
 app.use(function (req, res, next) {
-    // if(req.headers.origin == 'http://47.94.237.28:80' || 'http://localhost:8080'){
+    if(req.headers.origin == 'http://47.94.237.28:80' || 'http://localhost:8080'){
         // res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
         // res.header('Access-Control-Allow-Origin', 'http://47.94.237.28:8124');
-        // res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Origin', '*');
         // CORS请求默认不发送Cookie和HTTP认证信息。如果要把Cookie发到服务器，一方面要服务器同意，指定Access-Control-Allow-Credentials字段
-        // res.header('Access-Control-Allow-Credentials', 'true');
-        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    // } 
+        res.header('Access-Control-Allow-Credentials', 'true');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    } 
     req.cookies = new Cookies(req, res);
     // 解析用户登录的信息
     req.userInfo = null;

@@ -287,7 +287,12 @@ data(){
 + beforeEnter
 + afterEnter
 
+##### 组件缓存
 
++ keep-alive 包含的组件生命周期可以有下列两个方法
+  + activated
+  + deactivated
+  + 可以有 include，exclude  用来排除不需要缓存的组件。`<keep-alive exclude="xxx,xxx"><router-view/><keep-alive/>`
 
 
 

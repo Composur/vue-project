@@ -2,17 +2,16 @@ var mongoose = require('mongoose');
 // file: simplest.js var log4js = require('log4js'); var logger =
 // log4js.getLogger(); logger.debug("Time:", new Date());
 const config = require('../../config/config.default');
-
+mongoose.Promise = require('bluebird');
 var isConnectedBefore = false;
 const options = {
-    autoIndex: false, // Don't build indexes
     reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
     reconnectInterval: 500, // Reconnect every 500ms
     poolSize: 10, // Maintain up to 10 socket connections
     // If not connected, return errors immediately rather than waiting for reconnect
     bufferMaxEntries: 0,
     autoReconnect: true,
-    // useNewUrlParser: true
+    useMongoClient:true
 }
 
 //  mongoose.connect(uri, options, function(error) {     // Check error in
