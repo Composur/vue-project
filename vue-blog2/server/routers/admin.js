@@ -10,8 +10,8 @@ var Content = require('../models/Content');
 var formidable = require('formidable'),
   http = require('http'),
   util = require('util');
-const Files = require('../controller/files')
 
+const controller = require('../controller/admin')
 // 统一返回格式
 var responseData;
 router.use(function (req, res, next) {
@@ -384,40 +384,14 @@ router.get('/content/delete', function (req, res, next) {
 
 
 
-// 切片上传
-const path = require("path");
-const fse = require("fs-extra");
-const multiparty = require("multiparty");
-const UPLOAD_DIR = path.resolve(__dirname, "..", "target"); // 大文件存储目录
 router.post('/upload', (req, res) => {
-  const multipart = new multiparty.Form();
-  multipart.parse(req, (err, fields, files) => {
-    if (err) {
-      return;
-    }
-    const [chunk] = files.chunk;
-    const [hash] = fields.hash;
-    const [filename] = fields.filename;
-    const chunkDir = path.resolve(UPLOAD_DIR, filename);
-
-    // 切片目录不存在，创建切片目录
-    if (!fse.existsSync(chunkDir)) {
-      fse.mkdirpSync(chunkDir);
-    }
-
-    // fs-extra 专用方法，类似 fs.rename 并且跨平台
-    // fs-extra 的 rename 方法 windows 平台会有权限问题
-    // https://github.com/meteor/meteor/issues/7852#issuecomment-255767835
-    fse.moveSync(chunk.path, `${chunkDir}/${hash}`);
-    res.end("received file chunk");
-
-  });
+  controller.upload(req,res,next)
 })
 
-// 上传的切片合并
-router.post('/merge', (req, res) => {
-  res.json(responseData)
+// 得到合并的请求 开始合并文件
+router.post('/merge', async (req, res,next) => {
+  controller.merge(req,res,next)
 })
 
-// router.get('/download',Files.download)
+
 module.exports = router;

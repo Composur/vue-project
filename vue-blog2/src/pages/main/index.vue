@@ -73,9 +73,12 @@
           <el-button type="primary" size="mini" class="more" id="logout" @click="logout" v-if="!username">点击登录</el-button>
         </div>
         </transition>
-       
       </div>
     </div>
+    <div class="footer">
+     <div> <p>© 2019-2022 by 🍎 </p></div>
+      <p><a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备19121998号</a></p>
+      </div>
   </div>
 </template>
 
@@ -315,4 +318,10 @@
         .more
           margin-top  2px;
           background #42b983;
+
+
+.footer
+  text-align: center;
+  padding :10px;
+  background-color :#fff;
 </style>

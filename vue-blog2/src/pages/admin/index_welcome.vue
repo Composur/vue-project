@@ -11,7 +11,8 @@ import {server_port} from '../../../config/config.default.js'
 export default {
   data: () => ({
     container: {
-      file: null
+      file: null,
+      hash:''
     },
     data: []
   }),
@@ -23,17 +24,32 @@ export default {
       Object.assign(this.$data, this.$options.data());
       this.container.file = file;
     },
+     // 生成文件 hash（web-worker）
+    calculateHash(fileChunkList) {
+      return new Promise(resolve => {
+        this.container.worker = new Worker('/hash.js');
+        this.container.worker.postMessage({ fileChunkList });
+        this.container.worker.onmessage = e => {
+          const { percentage, hash } = e.data;
+          this.hashPercentage = percentage;
+          if (hash) {
+            resolve(hash);
+          }
+        };
+      });
+    },
     async handleUpload() {
       if (!this.container.file) return;
+   
       // 分片
-      const fileChunkList = this.createFileChunk(this.container.file)
+      const fileChunkList = this.createFileChunk(this.container.file)  
+      // this.container.hash = await this.calculateHash(fileChunkList);
       this.data = fileChunkList.map(({
         file
       }, index) => {
         return {
           chunk: file,
           hash: this.container.file.name + '_' + index  //定义一个 hash 
-
         }
       })
       await this.uploadChunks()
@@ -105,6 +121,8 @@ export default {
         },
         data:JSON.stringify({
           filename:this.container.file.name,
+          size:SIZE,
+          fileHash: this.container.hash,
         })
       })
     }
