@@ -52,7 +52,7 @@ const Status = {
   uploading: "uploading"
 };
 import {
-  server_port
+  server_port,server_address
 } from '../../../config/config.default.js'
 export default {
   data: () => ({
@@ -147,7 +147,8 @@ export default {
       const {
         data
       } = await this.request({
-        url: "http://localhost:" + server_port + "/admin/verify",
+        // url: "http://localhost:" + server_port + "/admin/verify",
+        url:server_address+ "/admin/verify",
         headers: {
           "content-type": "application/json"
         },
@@ -220,7 +221,7 @@ export default {
             index
           }) =>
           this.request({
-            url: "http://localhost:" + server_port + '/admin/upload',
+            url: server_address+ '/admin/upload',
             data: formData,
             onProgress: this.createProgressHandler(this.data[index]),
           }));
@@ -231,7 +232,7 @@ export default {
     // 发送合并请求
     async mergeRequset() {
       await this.request({
-        url: 'http://localhost:' + server_port + '/admin/merge',
+        url: server_address + '/admin/merge',
         headers: {
           "content-type": 'application/json'
         },
