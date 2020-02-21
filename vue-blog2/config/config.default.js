@@ -1,6 +1,6 @@
 const server_port = 8082
 let server_address = 'http://localhost:' + server_port
-if (process.env.NODE_ENV == "development") {
+if (process.env.NODE_ENV !== "development") {
   server_address = 'https://blog.xutong.top'
 }
 module.exports = {
