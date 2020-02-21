@@ -22,17 +22,22 @@ const resolvePost = req =>{
 const verify =((req,res,next)=>{
   // 服务器端有没有相同的文件
   // 有没有相同 hash 值得文件名
-  const {fileHash,filename} = req.body
+  const {fileHash,filename} = req.body 
   const ext = extractExt(filename)
   const filePath = path.resolve(UPLOAD_DIR,`${filename}${ext}`)
   const data = {
     shouldUpload:true,
-    uploadedList:[]
+    uploadedList:[] //已经上传的部分切片编号
   }
   // 文件已经存在
-   if (fse.existsSync(filePath)) {
-      data.shouldUpload = false
-      res.end(JSON.stringify(data))
+  if (fse.existsSync(filePath)) {
+
+
+    data.shouldUpload = false
+
+    const test = fse.readFileSync(filePath)
+    res.end(JSON.stringify(data))
+
   } else {
     // 不存在
     res.end(JSON.stringify(data))
