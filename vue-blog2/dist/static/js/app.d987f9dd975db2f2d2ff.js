@@ -3667,7 +3667,7 @@ module.exports = Component.exports
 
 const server_port = 8082
 let server_address = 'http://localhost:' + server_port
-if (false) {
+if (true) {
   server_address = 'https://blog.xutong.top'
 }
 module.exports = {
@@ -3681,4 +3681,4 @@ module.exports = {
 /***/ })
 
 },[155]);
-//# sourceMappingURL=app.6b037dc38f1ea96e2109.js.map
+//# sourceMappingURL=app.d987f9dd975db2f2d2ff.js.map
