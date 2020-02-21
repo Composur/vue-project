@@ -9,11 +9,8 @@
           </a>
         </div>
         <ul class="nav">
-          <li v-for="(category,index) in categories" v-on:click.stop="navIndex(index,$event)" 
-            v-bind:class="{ active:index==current}"
-          >
-            <router-link :to="{path:'/category', query:{id:category._id}}"
-            >{{ category.name }}</router-link>
+          <li v-for="(category,index) in categories" v-on:click.stop="navIndex(index,$event)"  v-bind:class="{active:index==current}">
+            <router-link :to="{path:'/category', query:{id:category._id}}">{{ category.name }}</router-link>
           </li>
         </ul>
       </div>

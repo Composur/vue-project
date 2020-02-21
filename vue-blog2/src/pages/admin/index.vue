@@ -2,7 +2,7 @@
   <div class="admin_index">
     <el-menu router class="menu">
       <img src="../../../static/logo.png" alt srcset>
-      <el-menu-item index="/admin">管理主页</el-menu-item>
+      <el-menu-item index="/admin">大文件上传</el-menu-item>
       <el-menu-item index="/admin/user">用户管理</el-menu-item>
       <el-submenu index="3">
         <template slot="title">分类管理</template>
@@ -18,9 +18,6 @@
         <template slot="title">{{ adminName }}</template>
         <el-menu-item index="/">退出</el-menu-item>
       </el-submenu>
-      <el-submeun index="6">
-        <el-menu-item index="/">回到前台</el-menu-item>
-      </el-submeun>
     </el-menu>
     <router-view id="levelTwo"></router-view>
   </div>
@@ -28,7 +25,7 @@
 
 <script type="es6">
 export default {
-  // name:'leftNav',
+  name:'leftNav',
   data() {
     return {
       adminName: ""

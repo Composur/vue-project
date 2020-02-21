@@ -384,7 +384,9 @@ router.get('/content/delete', function (req, res, next) {
 
 
 
-router.post('/upload', (req, res) => {
+
+
+router.post('/upload', (req, res,next) => {
   controller.upload(req,res,next)
 })
 
@@ -392,6 +394,10 @@ router.post('/upload', (req, res) => {
 router.post('/merge', async (req, res,next) => {
   controller.merge(req,res,next)
 })
+router.post('/verify', async (req, res, next) => {
+   controller.verify(req,res,next)
+})
+
 
 
 module.exports = router;

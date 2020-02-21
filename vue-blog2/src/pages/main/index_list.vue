@@ -2,7 +2,6 @@
   <div class="articleList">
 
     <div class="article"  v-for="content in data.contents" v-model="message" >
-
       <div class="article-title" v-bind:title="message">
         <router-link :to="{path:'/view', query: {id: content._id}}">{{ content.title }}</router-link>
       </div>

@@ -12,6 +12,7 @@ self.onmessage = e => {
     reader.onload = e => {
       count++;
       spark.append(e.target.result);
+      // 完毕后报告给 UI 线程
       if (count === fileChunkList.length) {
         self.postMessage({
           percentage: 100,
@@ -23,6 +24,7 @@ self.onmessage = e => {
         self.postMessage({
           percentage
         });
+        // 递归
         loadNext(count);
       }
     };
