@@ -19,46 +19,50 @@ const resolvePost = req =>{
 }
 
 // hash 校验
-const verify =((req,res,next)=>{
+const verify =( async (req,res,next)=>{
   // 服务器端有没有相同的文件
   // 有没有相同 hash 值得文件名
   const {fileHash,filename} = req.body 
   const ext = extractExt(filename)
-  const filePath = path.resolve(UPLOAD_DIR,`${filename}${ext}`)
-  const data = {
-    shouldUpload:true,
-    uploadedList:[] //已经上传的部分切片编号
-  }
+  const filePath = path.resolve(UPLOAD_DIR,`${fileHash}${ext}`)
   // 文件已经存在
   if (fse.existsSync(filePath)) {
-
-
-    data.shouldUpload = false
-
-    const test = fse.readFileSync(filePath)
-    res.end(JSON.stringify(data))
-
+    res.end(JSON.stringify({
+      shouldUpload:false
+    }))
   } else {
     // 不存在
-    res.end(JSON.stringify(data))
+    res.end(JSON.stringify({
+      shouldUpload:true,
+      uploadedList:await createUploadedList(fileHash)
+    }))
   }
-
 })
-
-
 // 文件上传
 const upload = ((req, res) => {
   const multipart = new multiparty.Form();
   // fields: 其它formData字段
   // files：二进制文件 
-  multipart.parse(req, (err, fields, files) => {
+  multipart.parse(req, async (err, fields, files) => {
     if (err) {
       return;
     }
     const [chunk] = files.chunk;
     const [hash] = fields.hash;
     const [filename] = fields.filename;
-    const chunkDir = path.resolve(UPLOAD_DIR, filename);
+    const [fileHash] = fields.fileHash;
+    const filePath = path.resolve(
+      UPLOAD_DIR,
+      `${fileHash}${extractExt(filename)}`
+    );
+    // const chunkDir = path.resolve(UPLOAD_DIR, filename);
+    const chunkDir = path.resolve(UPLOAD_DIR, fileHash);
+
+    // 文件存在直接返回
+    if (fse.existsSync(filePath)) {
+        res.end("file exist");
+        return;
+    }
 
     // 切片目录不存在，创建切片目录
     if (!fse.existsSync(chunkDir)) {
@@ -68,7 +72,7 @@ const upload = ((req, res) => {
     // fs-extra 专用方法，类似 fs.rename 并且跨平台
     // fs-extra 的 rename 方法 windows 平台会有权限问题
     // https://github.com/meteor/meteor/issues/7852#issuecomment-255767835
-    fse.moveSync(chunk.path, `${chunkDir}/${hash}`); //临时目录 移动到自定目录
+    await fse.move(chunk.path, path.resolve(chunkDir, hash));
     res.end("received file chunk");
   });
 })
@@ -81,15 +85,16 @@ const merge = (async (req, res,next) => {
     size
   } = req.body;
   const ext = extractExt(filename);//后缀
-  const filePath = path.resolve(UPLOAD_DIR, `${filename}${ext}`);
-  mergeFileChunk(filePath, filename, size);
+  // const filePath = path.resolve(UPLOAD_DIR, `${filename}${ext}`);
+  const filePath = path.resolve(UPLOAD_DIR, `${fileHash}${ext}`);
+  // mergeFileChunk(filePath, filename, size);
+  mergeFileChunk(filePath, fileHash, size);
   res.end(
     JSON.stringify({
       code: 0,
       message: "file merged success"
     })
   );
-  next()
 })
 
 
@@ -130,7 +135,6 @@ const mergeFileChunk = async (filePath, fileHash, size) => {
     )
   );
   fse.rmdirSync(chunkDir); // 合并后删除保存切片的目录
-  // fse.removeSync('/Users/haizhi/personal/vue-project/vue-blog2/server/target/')
 };
 
 // 返回已经上传切片名

@@ -16,7 +16,7 @@
         <div>计算文件 hash</div>
         <el-progress :percentage="hashPercentage"></el-progress>
         <div>总进度</div>
-        <el-progress :percentage="fakeUploadPercentage"></el-progress>
+        <el-progress :percentage="uploadPercentage"></el-progress>
       </div>
     </el-row>
     <el-row>
@@ -147,7 +147,6 @@ export default {
       const {
         data
       } = await this.request({
-        // url: "http://localhost:" + server_port + "/admin/verify",
         url:server_address+ "/admin/verify",
         headers: {
           "content-type": "application/json"
@@ -178,10 +177,17 @@ export default {
         );
         xhr.send(data);
         xhr.onload = e => {
+          if(requestList){
+            // 已经上传成功切片的 xhr 对象被移除 否则会传递到服务端告诉哪些没有上传成功
+            requestList.splice(requestList.findIndex(item => item === xhr),1)
+          }
           resolve({
             data: e.target.response
           });
         };
+        if(requestList){
+          this.requestList.push(xhr)
+        }
       });
     },
 
@@ -201,6 +207,7 @@ export default {
     // 上传切片
     async uploadChunks(uploadedList = []) {
       const requestList = this.data
+      .filter(({ hash }) => !uploadedList.includes(hash))
         .map(({
           chunk,
           hash,
@@ -224,9 +231,13 @@ export default {
             url: server_address+ '/admin/upload',
             data: formData,
             onProgress: this.createProgressHandler(this.data[index]),
+            requestList:this.requestList
           }));
       await Promise.all(requestList); // 并发上传切片
-      await this.mergeRequset() // 这里采用的是前端通知服务端上传完成可以进行服务端合并
+      if (uploadedList.length + requestList.length === this.data.length) {
+        await this.mergeRequset();
+      }
+      // await this.mergeRequset() // 这里采用的是前端通知服务端上传完成可以进行服务端合并
     },
 
     // 发送合并请求
@@ -242,16 +253,29 @@ export default {
           fileHash: this.container.hash,
         })
       })
+      this.$message.success("上传成功");
+      this.status = Status.wait;
     },
 
     // 上传暂停
     handlePause() {
-      return
+      this.status = Status.pause;
+      this.resetData();
     },
-
+    resetData() {
+      this.requestList.forEach(xhr => xhr?xhr.abort():null);
+      this.requestList = [];
+      if (this.container.worker) {
+        this.container.worker.onmessage = null;
+      }
+    },
     // 上传恢复
-    handleResume() {
-      return
+   async handleResume() {
+      this.status = Status.uploading;
+      // 恢复上传
+     const { uploadedList } = await this.verifyUpload(this.container.file.name,this.container.hash)
+     console.log(uploadedList)
+    await this.uploadChunks(uploadedList)
     },
 
     // 上传过程中的进度
@@ -262,7 +286,12 @@ export default {
     }
   },
   computed: {
-
+    uploadPercentage(){
+      if (!this.container.file) return
+      const loadSize = this.data.reduce((totalpercentage,item) => totalpercentage+=item.percentage,0)
+      return parseInt((loadSize / this.data.length || 0).toFixed(0))
+    }
+    
   },
   filters: {
     transformByte(val) {
