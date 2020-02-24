@@ -72,7 +72,12 @@ const upload = ((req, res) => {
     // fs-extra 专用方法，类似 fs.rename 并且跨平台
     // fs-extra 的 rename 方法 windows 平台会有权限问题
     // https://github.com/meteor/meteor/issues/7852#issuecomment-255767835
-    await fse.move(chunk.path, path.resolve(chunkDir, hash));
+    try {
+      await fse.move(chunk.path, path.resolve(chunkDir, hash));
+    } catch (error) {
+      console.log('问题：',chunk.path,path.resolve(chunkDir, hash),error)
+    }    
+   
     res.end("received file chunk");
   });
 })
