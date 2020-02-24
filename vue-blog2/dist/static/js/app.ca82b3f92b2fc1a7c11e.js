@@ -1006,7 +1006,6 @@ var Status = {
               case 0:
                 _context2.next = 2;
                 return _this3.request({
-                  // url: "http://localhost:" + server_port + "/admin/verify",
                   url: __WEBPACK_IMPORTED_MODULE_7__config_config_default_js__["server_address"] + "/admin/verify",
                   headers: {
                     "content-type": "application/json"
@@ -1034,6 +1033,8 @@ var Status = {
 
     // 原生请求封装
     request: function request(_ref4) {
+      var _this4 = this;
+
       var url = _ref4.url,
           _ref4$method = _ref4.method,
           method = _ref4$method === undefined ? "post" : _ref4$method,
@@ -1055,10 +1056,19 @@ var Status = {
         });
         xhr.send(data);
         xhr.onload = function (e) {
+          if (requestList) {
+            // 已经上传成功切片的 xhr 对象被移除 否则会传递到服务端告诉哪些没有上传成功
+            requestList.splice(requestList.findIndex(function (item) {
+              return item === xhr;
+            }), 1);
+          }
           resolve({
             data: e.target.response
           });
         };
+        if (requestList) {
+          _this4.requestList.push(xhr);
+        }
       });
     },
 
@@ -1081,7 +1091,7 @@ var Status = {
 
     // 上传切片
     uploadChunks: function uploadChunks() {
-      var _this4 = this;
+      var _this5 = this;
 
       var uploadedList = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       return __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_2_babel_runtime_regenerator___default.a.mark(function _callee4() {
@@ -1090,32 +1100,36 @@ var Status = {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                requestList = _this4.data.map(function (_ref5) {
-                  var chunk = _ref5.chunk,
-                      hash = _ref5.hash,
-                      index = _ref5.index;
+                requestList = _this5.data.filter(function (_ref5) {
+                  var hash = _ref5.hash;
+                  return !uploadedList.includes(hash);
+                }).map(function (_ref6) {
+                  var chunk = _ref6.chunk,
+                      hash = _ref6.hash,
+                      index = _ref6.index;
 
                   var formData = new FormData();
                   formData.append("chunk", chunk);
                   formData.append("hash", hash);
-                  formData.append("filename", _this4.container.file.name);
-                  formData.append("fileHash", _this4.container.hash);
+                  formData.append("filename", _this5.container.file.name);
+                  formData.append("fileHash", _this5.container.hash);
                   return {
                     formData: formData,
                     index: index
                   };
                 }).map(function () {
-                  var _ref6 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_2_babel_runtime_regenerator___default.a.mark(function _callee3(_ref7) {
-                    var formData = _ref7.formData,
-                        index = _ref7.index;
+                  var _ref7 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_2_babel_runtime_regenerator___default.a.mark(function _callee3(_ref8) {
+                    var formData = _ref8.formData,
+                        index = _ref8.index;
                     return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                       while (1) {
                         switch (_context3.prev = _context3.next) {
                           case 0:
-                            return _context3.abrupt("return", _this4.request({
+                            return _context3.abrupt("return", _this5.request({
                               url: __WEBPACK_IMPORTED_MODULE_7__config_config_default_js__["server_address"] + '/admin/upload',
                               data: formData,
-                              onProgress: _this4.createProgressHandler(_this4.data[index])
+                              onProgress: _this5.createProgressHandler(_this5.data[index]),
+                              requestList: _this5.requestList
                             }));
 
                           case 1:
@@ -1123,33 +1137,38 @@ var Status = {
                             return _context3.stop();
                         }
                       }
-                    }, _callee3, _this4);
+                    }, _callee3, _this5);
                   }));
 
                   return function (_x3) {
-                    return _ref6.apply(this, arguments);
+                    return _ref7.apply(this, arguments);
                   };
                 }());
                 _context4.next = 3;
                 return __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_promise___default.a.all(requestList);
 
               case 3:
-                _context4.next = 5;
-                return _this4.mergeRequset();
+                if (!(uploadedList.length + requestList.length === _this5.data.length)) {
+                  _context4.next = 6;
+                  break;
+                }
 
-              case 5:
+                _context4.next = 6;
+                return _this5.mergeRequset();
+
+              case 6:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, _this4);
+        }, _callee4, _this5);
       }))();
     },
 
 
     // 发送合并请求
     mergeRequset: function mergeRequset() {
-      var _this5 = this;
+      var _this6 = this;
 
       return __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_2_babel_runtime_regenerator___default.a.mark(function _callee5() {
         return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
@@ -1157,37 +1176,78 @@ var Status = {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return _this5.request({
+                return _this6.request({
                   url: __WEBPACK_IMPORTED_MODULE_7__config_config_default_js__["server_address"] + '/admin/merge',
                   headers: {
                     "content-type": 'application/json'
                   },
                   data: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify___default()({
-                    filename: _this5.container.file.name,
+                    filename: _this6.container.file.name,
                     size: SIZE,
-                    fileHash: _this5.container.hash
+                    fileHash: _this6.container.hash
                   })
                 });
 
               case 2:
+                _this6.$message.success("上传成功");
+                _this6.status = Status.wait;
+
+              case 4:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, _this5);
+        }, _callee5, _this6);
       }))();
     },
 
 
     // 上传暂停
     handlePause: function handlePause() {
-      return;
+      this.status = Status.pause;
+      this.resetData();
     },
-
+    resetData: function resetData() {
+      this.requestList.forEach(function (xhr) {
+        return xhr ? xhr.abort() : null;
+      });
+      this.requestList = [];
+      if (this.container.worker) {
+        this.container.worker.onmessage = null;
+      }
+    },
 
     // 上传恢复
     handleResume: function handleResume() {
-      return;
+      var _this7 = this;
+
+      return __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_2_babel_runtime_regenerator___default.a.mark(function _callee6() {
+        var _ref9, uploadedList;
+
+        return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _this7.status = Status.uploading;
+                // 恢复上传
+                _context6.next = 3;
+                return _this7.verifyUpload(_this7.container.file.name, _this7.container.hash);
+
+              case 3:
+                _ref9 = _context6.sent;
+                uploadedList = _ref9.uploadedList;
+
+                console.log(uploadedList);
+                _context6.next = 8;
+                return _this7.uploadChunks(uploadedList);
+
+              case 8:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, _this7);
+      }))();
     },
 
 
@@ -1198,7 +1258,15 @@ var Status = {
       };
     }
   },
-  computed: {},
+  computed: {
+    uploadPercentage: function uploadPercentage() {
+      if (!this.container.file) return;
+      var loadSize = this.data.reduce(function (totalpercentage, item) {
+        return totalpercentage += item.percentage;
+      }, 0);
+      return parseInt((loadSize / this.data.length || 0).toFixed(0));
+    }
+  },
   filters: {
     transformByte: function transformByte(val) {
       return Number((val / 1024).toFixed(0));
@@ -2827,7 +2895,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('div', [_vm._v("总进度")]), _vm._v(" "), _c('el-progress', {
     attrs: {
-      "percentage": _vm.fakeUploadPercentage
+      "percentage": _vm.uploadPercentage
     }
   })], 1)]), _vm._v(" "), _c('el-row', [
     [_c('el-table', {
@@ -3666,10 +3734,13 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 const server_port = 8082
-let server_address = 'http://localhost:' + server_port
-if (true) {
-  server_address = 'https://blog.xutong.top'
+let server_address = 'https://blog.xutong.top'
+
+if (false) {
+  server_address = 'http://localhost:' + server_port
 }
+console.log("production");
+
 module.exports = {
   server_port,
   dataBase: "mongodb://localhost/blog",
@@ -3681,4 +3752,4 @@ module.exports = {
 /***/ })
 
 },[155]);
-//# sourceMappingURL=app.d987f9dd975db2f2d2ff.js.map
+//# sourceMappingURL=app.ca82b3f92b2fc1a7c11e.js.map
