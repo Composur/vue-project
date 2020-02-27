@@ -1,4 +1,4 @@
-/**
+ /**
  * @description 封装axios
  */
 // import store from 'store'
@@ -11,28 +11,33 @@ import axios from 'axios'
 //   return  (<Redirect to={'/login'}></Redirect>)
 // }
 
-// 请求拦截
-axios.interceptors.request.use()
 
-// 响应拦截
-axios.interceptors.response.use(
-  response => {
-    return response
-  },
-  error => {
-    if (error.response) {
-      switch (error.response.status) {
-        case 401:
-        // store.clearAll();
-        // redirect();
-        break;
-        default:
-        return
-      }
-    }
-    return Promise.reject(error.response)
-  }
-)
+// 添加请求拦截器
+axios.interceptors.request.use(function (config) {
+  // 在发送请求之前做些什么
+  return config;
+}, function (error) {
+  // 对请求错误做些什么
+  return Promise.reject(error);
+});
+
+// 添加响应拦截器
+axios.interceptors.response.use(function (response) {
+  // 对响应数据做点什么
+  return response;
+}, function (error) {
+  // 对响应错误做点什么
+  return Promise.reject(error);
+});
+
+
+// 创建一个实例 根据不同的 url 创建实例 
+const instance = axios.create({
+  baseURL: 'https://some-domain.com/api/',
+  timeout: 5000,
+  headers: {'X-Custom-Header': 'foobar'}
+});
+
 
 export default function (url, type = 'GET', data={}) {
   // axios.defaults.headers.common['Authorization'] = store.get('token')

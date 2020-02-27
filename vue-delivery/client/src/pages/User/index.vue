@@ -105,6 +105,7 @@ export default {
     ...mapState(['loginUserInfo'])
   },
   methods: {
+    // 提交一个 commit mutation
     ...mapActions([GET_OUT]),
     logout(){
       MessageBox({

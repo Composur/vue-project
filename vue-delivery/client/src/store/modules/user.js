@@ -6,7 +6,7 @@ const state = {
   loginUserInfo: {},
 }
 const getters = {
-  doLoginUserInfo: state => {
+  doLoginUserInfo: (state,currentGetter,rootState) => {
     return state.loginUserInfo.data || {}
   },
 }

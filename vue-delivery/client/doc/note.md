@@ -1,4 +1,11 @@
+## Vuex
+
+什么需要放到 vuex 上，需要共享的数据。
+
++ token、名称、位置、头像、商品、收藏等。
+
 ### 获取veux上的state
+
 由于 Vuex 的状态存储是响应式的，从 store 实例中读取状态最简单的方法就是在计算属性中返回某个状态：
 ```javascript
 computed: {
