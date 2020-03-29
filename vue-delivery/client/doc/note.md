@@ -31,7 +31,13 @@ computed: {
     address:state => state.address
   }),
 ```
+### actions 和 mutations 有什么区别
+
++ 事实上在 vuex 里面 actions 只是一个架构性的概念，并不是必须的，说到底只是一个函数，你在里面想干嘛都可以，只要最后触发 mutation 就行。异步竞态怎么处理那是用户自己的事情
++ Action 提交的是 mutation，而不是直接变更状态。 Action 可以包含任意异步操作。个人觉得这个 action 的产生就是因为 mutation 不能进行异步操作，如果有异步操作那么就用 action 来提交mutation
+
 ### vue 模板上的数据来源
+
 + data
 + props
 + computed

@@ -3,6 +3,7 @@
     <el-menu router class="menu">
       <img src="../../../static/logo.png" alt srcset>
       <el-menu-item index="/admin">大文件上传</el-menu-item>
+      <el-menu-item index="/d3">数据可视化</el-menu-item>
       <el-menu-item index="/admin/user">用户管理</el-menu-item>
       <el-submenu index="3">
         <template slot="title">分类管理</template>

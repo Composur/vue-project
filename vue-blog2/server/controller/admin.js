@@ -6,8 +6,9 @@ const multiparty = require("multiparty");
 const UPLOAD_DIR = path.resolve(__dirname, "..", "target"); // 大文件存储目录
 const extractExt = filename =>filename.slice(filename.lastIndexOf("."), filename.length); // 提取后缀名
 
-//  原生的的 createServer 需要这样读数据
+//  原生的的 createServer 需要这样读 req.body 的数据
 const resolvePost = req =>{
+  
   new Promise(resolve => {
     let chunk = "";
     req.on("data", data => {

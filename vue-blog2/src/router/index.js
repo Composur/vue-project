@@ -12,6 +12,7 @@ import category_edit from '../pages/admin/category_edit.vue'
 import content_index from '../pages/admin/content_index.vue'
 import content_add from '../pages/admin/content_add.vue'
 import content_edit from '../pages/admin/content_edit.vue'
+import dataView from '../pages/dataView/index.vue'
 import Cookie from 'js-cookie'
 
 Vue.use(Router)
@@ -50,6 +51,10 @@ export default new Router({
         {
           path: '/admin',
           component: index_welcome,
+        },
+        {
+          path: '/d3',
+          component: dataView,
         },
         {
           path: '/admin/user',
