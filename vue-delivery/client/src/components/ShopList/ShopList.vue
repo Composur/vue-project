@@ -1,7 +1,10 @@
 <template>
   <div class="shop_container">
     <ul class="shop_list" v-if="shopArr.length">
-      <li class="shop_li border-1px"  v-for="(shops, index) in shopArr" :key="index" @click="goDetail">
+      <li class="shop_li border-1px" 
+       v-for="(shops, index) in shopArr" :key="index"
+        :ref='index'
+        @click="goDetail">
         <a>
           <div class="shop_left">
             <!-- <img class="shop_img" :src="baseImgUrl+shops.image_path"> -->
@@ -61,7 +64,8 @@ export default {
   data () {
     return {
       // baseImgUrl: 'http://cangdu.org:8001/img/'
-      baseImgUrl: "./images/shop/"+Math.floor(Math.random()*4)+'.jpg'
+      baseImgUrl: "./images/shop/"+Math.floor(Math.random()*4)+'.jpg',
+      testStyle:''
     }
   },
   mounted: function () {
@@ -73,6 +77,28 @@ export default {
     goDetail(){
       this.$router.push('/detail')
     },
+    touchStart(id) {
+    event.stopPropagation()
+    event.preventDefault()
+    if (event.touches.length === 1) {
+      this.startX = event.touches[0].clientX
+    }
+  },
+  touchEnd(id) {
+    event.stopPropagation()
+    event.preventDefault()
+    const dom = this.$refs[id][0]
+    const wd = dom.offsetWidth
+    if (event.changedTouches.length === 1) {
+      this.endX = event.changedTouches[0].clientX
+      this.disX = this.endX - this.startX
+    }
+    if (this.disX > 0) {
+      dom.style = 'transform: translateX(0);'
+    } else {
+      dom.style = `transform: translateX(-100px)`
+    }
+  }
   },
   components:{
     Star
